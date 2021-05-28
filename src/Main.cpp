@@ -1,8 +1,4 @@
-/* List: p3-robot.c
- * Robot arm with two links and two joints.
- * Examination of world-local coordinates, modeling transfomation and
- * operation of matrix stack.
- */
+
 #include <stdlib.h>
 #include <GL/glut.h>
 #include "Ant.h"
@@ -13,6 +9,7 @@ static int shoulder = 0, elbow = 0, hand = 0;
 static Camera camera;
 static Workspace workspace;
 static Ant ant;
+
 unsigned char	mouseFlag = GL_FALSE;		// flag for moving or not
 int				xStart, yStart;				// start position when drug begins
 double			xAngle = 0.0, yAngle = 0.0;	// angles of the teapot
