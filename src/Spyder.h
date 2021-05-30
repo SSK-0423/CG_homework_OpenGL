@@ -1,31 +1,27 @@
 #pragma once
 #include "Vector3D.h"
-#include "SpyderBody.h"
 #include "SpyderHead.h"
 #include "SpyderLeg.h"
 #include "SpyderTale.h"
+#include "FrontLegAnimator.h"
+#include "MiddleLegAnimator.h"
 
 class Spyder {
 private:
-	double legRotateZ;
-	double legRotateY;
-	float speed;
+	//前脚のアニメータ
+	static FrontLegAnimator frontLegAni;
+	//後脚のアニメータ
+	static MiddleLegAnimator middleLegAni;
 	//座標
 	Vector3D position;
-	// 頭
-	void DrawHead(float x, float y, float z);
-	// 胴体
-	void DrawBody(float x, float y, float z);
-	// 足
-	void DrawLeg(float x, float y, float z, int num);
-	// しっぽ
-	void DrawTale(float x, float y, float z);
-	// 目
-	void DrawEye(float x, float y, float z, double sx, int slices, int stacks);
-	// 触覚
-	void DrawTactile(float x, float y, float z);
-	// 糸
-	void DrawThread(float x, float y, float z,int angle);
+	//6本脚
+	SpyderLeg leg[8];
+	//頭
+	SpyderHead head;
+	//尾
+	SpyderTale tale;
+	// アニメーションの設定
+	void InitAnimation();
 public:
 	Spyder();
 	//描画関数

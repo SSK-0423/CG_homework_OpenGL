@@ -8,7 +8,7 @@
 static int shoulder = 0, elbow = 0, hand = 0;
 static Camera camera;
 static Workspace workspace;
-static Spyder ant;
+static Spyder spyder;
 
 unsigned char	mouseFlag = GL_FALSE;		// flag for moving or not
 int				xStart, yStart;				// start position when drug begins
@@ -110,9 +110,9 @@ void myDisplay(void)
 		{
 			camera.Draw();
 			workspace.Draw();
-			//ant.MovePosition(0.0, 0.0, -0.005);
-			ant.Animation();
-			ant.Draw();
+			//spyder.MovePosition(0.0, 0.0, -0.005);
+			spyder.Animation();
+			spyder.Draw();
 		}
 		glPopMatrix();
 	}
