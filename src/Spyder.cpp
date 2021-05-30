@@ -9,16 +9,16 @@ MiddleLegAnimator Spyder::middleLegAni;
 void Spyder::InitAnimation()
 {
 	//右脚
-	leg[0].SetAnimator((Animator<double&,double&,float&>&)frontLegAni);
-	leg[1].SetAnimator((Animator<double&, double&, float&>&)middleLegAni);
-	leg[2].SetAnimator((Animator<double&, double&, float&>&)middleLegAni);
-	leg[3].SetAnimator((Animator<double&, double&, float&>&)frontLegAni);
-	
+	leg[0].SetAnimator((Animator<double&, double&, double&, double&, float&>&)frontLegAni);
+	leg[1].SetAnimator((Animator<double&, double&, double&, double&, float&>&)middleLegAni);
+	leg[2].SetAnimator((Animator<double&, double&, double&, double&, float&>&)middleLegAni);
+	leg[3].SetAnimator((Animator<double&, double&, double&, double&, float&>&)frontLegAni);
+
 	//左脚
-	leg[4].SetAnimator((Animator<double&, double&, float&>&)frontLegAni);
-	leg[5].SetAnimator((Animator<double&, double&, float&>&)middleLegAni);
-	leg[6].SetAnimator((Animator<double&, double&, float&>&)middleLegAni);
-	leg[7].SetAnimator((Animator<double&, double&, float&>&)frontLegAni);
+	leg[4].SetAnimator((Animator<double&, double&, double&, double&, float&>&)frontLegAni);
+	leg[5].SetAnimator((Animator<double&, double&, double&, double&, float&>&)middleLegAni);
+	leg[6].SetAnimator((Animator<double&, double&, double&, double&, float&>&)middleLegAni);
+	leg[7].SetAnimator((Animator<double&, double&, double&, double&, float&>&)frontLegAni);
 }
 
 Spyder::Spyder() {
@@ -76,9 +76,25 @@ void Spyder::MovePosition(float x, float y, float z)
 
 // 各パーツのアニメーション呼び出し
 void Spyder::Animation() {
-	for (int i = 0; i < 8; i++) {
+	/*for (int i = 0; i < 8; i++) {
 		leg[i].Animation();
-	}
+	}*/
+	// 前脚のアニメーション
+	frontLegAni.ChangeAnimeType(0);
+	leg[0].Animation();
+	frontLegAni.ChangeAnimeType(1);
+	leg[4].Animation();
+
+	// 胴体中央の脚のアニメーション
+	middleLegAni.ChangeAnimeType(0);
+	leg[1].Animation();
+	middleLegAni.ChangeAnimeType(0);
+	leg[2].Animation();
+	middleLegAni.ChangeAnimeType(0);
+	leg[5].Animation();
+	middleLegAni.ChangeAnimeType(0);
+	leg[6].Animation();
+
 	head.Animation();
 	tale.Animation();
 }
