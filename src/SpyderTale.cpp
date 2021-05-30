@@ -23,16 +23,16 @@ void SpyderTale::Draw(float x, float y, float z) {
 		glRotated(0, 1, 0, 0);
 		glTranslated(x, y, z / 2);
 
-		/*DrawThread(0, 0, 0, 5);
-		DrawThread(0, 0, 0, 10);
-		DrawThread(0, 0, 0, 15);
-		DrawThread(0, 0, 0, 0);
-		DrawThread(0, 0, 0, -5);
-		DrawThread(0, 0, 0, -10);
-		DrawThread(0, 0, 0, -15);*/
+		//DrawThread(0, 0, 0, 5);
+		//DrawThread(0, 0, 0, 10);
+		//DrawThread(0, 0, 0, 15);
+		//DrawThread(0, 0, 0, 0);
+		//DrawThread(0, 0, 0, -5);
+		//DrawThread(0, 0, 0, -10);
+		//DrawThread(0, 0, 0, -15);
 
 		glColor3d(0.5, 0.25, 0);
-		glScaled(4, 2, 5);
+		glScaled(4, 4, 5);
 		glutWireCube(1);
 	}
 	glPopMatrix();

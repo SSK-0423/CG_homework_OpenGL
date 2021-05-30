@@ -30,71 +30,6 @@ void myInit(char* progname)
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 }
 
-void drawRobot() {
-	glColor3d(1.0, 1.0, 1.0);
-	glPushMatrix();
-	/* 1st link */
-	glRotated((double)shoulder, 0.0, 0.0, 1.0);
-	glTranslated(1.0+shoulder, 0.0, 0.0);
-	glPushMatrix();
-	//
-	glScaled(2.0, 0.4, 1.0);
-	glutWireCube(1.0);
-	glPopMatrix();
-	/* 2nd link */
-	glTranslated(1.0, 0.0, 0.0);				//move to the end of 1st link
-	glRotated((double)elbow, 0.0, 0.0, 1.0);
-	glTranslated(1.0, 0.0, 0.0);
-
-	glPushMatrix();
-	glScaled(2.0, 0.4, 1.0);
-	glutWireCube(1.0);
-	glPopMatrix();
-	/*3rd link*/
-	glTranslated(1.0, 0.0, 0.0);				//move to the end of 1st link
-	glRotated((double)hand, 0.0, 0.0, 1.0);
-	glTranslated(0.5, 0.0, 0.0);
-
-	glPushMatrix();
-	glScaled(1.0, 0.4, 1.0);
-	glutWireCube(1.0);
-	glPopMatrix();
-
-	glPopMatrix();
-
-	glPushMatrix();
-	/* 1st link */
-	glRotated(-(double)shoulder, 0.0, 0.0, 1.0);
-	glTranslated(-1.0, 0.0, 0.0);
-	glPushMatrix();
-	//
-	glScaled(2.0, 0.4, 1.0);
-	glutWireCube(1.0);
-	glPopMatrix();
-
-	/* 2nd link */
-	glTranslated(-1.0, 0.0, 0.0);				//move to the end of 1st link
-	glRotated(-(double)elbow, 0.0, 0.0, 1.0);
-	glTranslated(-1.0, 0.0, 0.0);
-
-	glPushMatrix();
-	glScaled(2.0, 0.4, 1.0);
-	glutWireCube(1.0);
-	glPopMatrix();
-	/*3rd link*/
-	glTranslated(-1.0, 0.0, 0.0);				//move to the end of 1st link
-	glRotated(-(double)hand, 0.0, 0.0, 1.0);
-	glTranslated(-0.5, 0.0, 0.0);
-
-	glPushMatrix();
-	glScaled(1.0, 0.4, 1.0);
-	glutWireCube(1.0);
-	glPopMatrix();
-
-	glPopMatrix();
-
-}
-
 //ï`âÊä÷êî
 void myDisplay(void)
 {
@@ -110,8 +45,8 @@ void myDisplay(void)
 		{
 			camera.Draw();
 			workspace.Draw();
-			//spyder.MovePosition(0.0, 0.0, -0.005);
 			spyder.Animation();
+			spyder.MovePosition(0.0, 0.0, -0.005);
 			spyder.Draw();
 		}
 		glPopMatrix();

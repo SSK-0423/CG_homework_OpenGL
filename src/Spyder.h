@@ -5,13 +5,16 @@
 #include "SpyderTale.h"
 #include "FrontLegAnimator.h"
 #include "MiddleLegAnimator.h"
+#include "HindLegAnimator.h"
 
 class Spyder {
 private:
 	//前脚のアニメータ
 	static FrontLegAnimator frontLegAni;
-	//後脚のアニメータ
+	//中央の脚のアニメータ
 	static MiddleLegAnimator middleLegAni;
+	//後ろ脚のアニメータ
+	static HindLegAnimator hindLegAni;
 	//座標
 	Vector3D position;
 	//6本脚

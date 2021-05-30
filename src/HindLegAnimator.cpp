@@ -1,9 +1,7 @@
-#include "FrontLegAnimator.h"
-#include "GL/glut.h"
+#include "HindLegAnimator.h"
 #include "Lerp.h"
-#include "Debug.h"
 
-FrontLegAnimator::FrontLegAnimator()
+HindLegAnimator::HindLegAnimator()
 {
 	state = 0;
 	type = 0;
@@ -13,7 +11,7 @@ FrontLegAnimator::FrontLegAnimator()
 	MakeLerpList(secondJoint, secondJointLerp, step);
 }
 
-void FrontLegAnimator::Animation(double& legRotateY, double& legRotateZ, double& firstJointRotate, double& secondJointRotate, float& speed)
+void HindLegAnimator::Animation(double& legRotateY, double& legRotateZ, double& firstJointRotate, double& secondJointRotate, float& speed)
 {
 	if (type == 0) {
 		legRotateZ = legLerp[state % legLerp.size()];
@@ -28,7 +26,7 @@ void FrontLegAnimator::Animation(double& legRotateY, double& legRotateZ, double&
 	state += 1;
 }
 
-void FrontLegAnimator::ChangeAnimeType(int type)
+void HindLegAnimator::ChangeAnimeType(int type)
 {
 	this->type = type;
 }

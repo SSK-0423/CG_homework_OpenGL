@@ -144,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\FrontLegAnimator.cpp" />
+    <ClCompile Include="src\HindLegAnimator.cpp" />
     <ClCompile Include="src\Lerp.cpp" />
     <ClCompile Include="src\MiddleLegAnimator.cpp" />
     <ClCompile Include="src\Spyder.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="src\SpyderTale.h" />
     <ClInclude Include="src\Vector3D.h" />
     <ClInclude Include="src\Workspace.h" />
+    <ClInclude Include="src\HindLegAnimator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

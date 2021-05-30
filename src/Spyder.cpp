@@ -5,6 +5,7 @@
 
 FrontLegAnimator Spyder::frontLegAni;
 MiddleLegAnimator Spyder::middleLegAni;
+HindLegAnimator Spyder::hindLegAni;
 
 void Spyder::InitAnimation()
 {
@@ -12,13 +13,13 @@ void Spyder::InitAnimation()
 	leg[0].SetAnimator((Animator<double&, double&, double&, double&, float&>&)frontLegAni);
 	leg[1].SetAnimator((Animator<double&, double&, double&, double&, float&>&)middleLegAni);
 	leg[2].SetAnimator((Animator<double&, double&, double&, double&, float&>&)middleLegAni);
-	leg[3].SetAnimator((Animator<double&, double&, double&, double&, float&>&)frontLegAni);
+	leg[3].SetAnimator((Animator<double&, double&, double&, double&, float&>&)hindLegAni);
 
 	//左脚
 	leg[4].SetAnimator((Animator<double&, double&, double&, double&, float&>&)frontLegAni);
 	leg[5].SetAnimator((Animator<double&, double&, double&, double&, float&>&)middleLegAni);
 	leg[6].SetAnimator((Animator<double&, double&, double&, double&, float&>&)middleLegAni);
-	leg[7].SetAnimator((Animator<double&, double&, double&, double&, float&>&)frontLegAni);
+	leg[7].SetAnimator((Animator<double&, double&, double&, double&, float&>&)hindLegAni);
 }
 
 Spyder::Spyder() {
@@ -43,15 +44,15 @@ void Spyder::Draw() {
 				float x = 4;
 				//右脚
 				leg[0].Draw(x, 0, -1, 4);
-				leg[1].Draw(x, 0, -0.5, 1);
-				leg[2].Draw(x, 0, 0, -1);
-				leg[3].Draw(x, 0, 0.5, -3);
+				leg[1].Draw(x, 0, -0.5, 2);
+				leg[2].Draw(x, 0, 0, -2);
+				leg[3].Draw(x, 0, 0.5, -4);
 
 				//左脚
 				leg[4].Draw(-x, 0, -1, 4);
-				leg[5].Draw(-x, 0, -0.5, 1);
-				leg[6].Draw(-x, 0, 0, -1);
-				leg[7].Draw(-x, 0, 0.5, -3);
+				leg[5].Draw(-x, 0, -0.5, 2);
+				leg[6].Draw(-x, 0, 0, -2);
+				leg[7].Draw(-x, 0, 0.5, -4);
 
 				// 頭
 				head.Draw(0, 0, -2);
@@ -76,9 +77,7 @@ void Spyder::MovePosition(float x, float y, float z)
 
 // 各パーツのアニメーション呼び出し
 void Spyder::Animation() {
-	/*for (int i = 0; i < 8; i++) {
-		leg[i].Animation();
-	}*/
+
 	// 前脚のアニメーション
 	frontLegAni.ChangeAnimeType(0);
 	leg[0].Animation();
@@ -86,14 +85,25 @@ void Spyder::Animation() {
 	leg[4].Animation();
 
 	// 胴体中央の脚のアニメーション
-	middleLegAni.ChangeAnimeType(0);
+	// 中央右前脚
+	middleLegAni.ChangeAnimeType(1);
 	leg[1].Animation();
-	middleLegAni.ChangeAnimeType(0);
-	leg[2].Animation();
+	// 中央左前脚
 	middleLegAni.ChangeAnimeType(0);
 	leg[5].Animation();
-	middleLegAni.ChangeAnimeType(0);
+
+	//中央右後ろ脚
+	middleLegAni.ChangeAnimeType(3);
+	leg[2].Animation();
+	//中央左後ろ脚
+	middleLegAni.ChangeAnimeType(2);
 	leg[6].Animation();
+
+	//後ろ脚のアニメーション
+	hindLegAni.ChangeAnimeType(1);
+	leg[3].Animation();
+	hindLegAni.ChangeAnimeType(0);
+	leg[7].Animation();
 
 	head.Animation();
 	tale.Animation();

@@ -16,7 +16,7 @@ void Camera::Draw()
 		gluLookAt(position.x, position.y, position.z, position.x, position.y - 10, position.z - 1, 0.0, 1.0, 0.0);
 		break;
 	case 1:
-		gluLookAt(0.0, 1.0, -15, 0.0, 1.0, -9.0, 0.0, 1.0, 0.0);
+		gluLookAt(0.0, 1.0, position.z, 0.0, 1.0, -9.0, 0.0, 1.0, 0.0);
 		break;
 	case 2:
 		gluLookAt(0.0, 1.0, 10, 0.0, 1.0, 9.0, 0.0, 1.0, 0.0);
