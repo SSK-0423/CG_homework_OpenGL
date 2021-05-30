@@ -1,8 +1,8 @@
-#include "Ant.h"
+#include "Spyder.h"
 #include "GL/glut.h"
 #include <math.h>
 #define PI 3.141592
-Ant::Ant() {
+Spyder::Spyder() {
 	legRotateY = legRotateZ = 0;
 	speed = 0.5;
 	position.x = 0;
@@ -10,7 +10,7 @@ Ant::Ant() {
 	position.z = 0;
 }
 
-void Ant::Draw() {
+void Spyder::Draw() {
 	glColor3d(0.5, 0.25, 0);
 	// 最上位の単位行列をコピー
 	glPushMatrix();
@@ -23,11 +23,11 @@ void Ant::Draw() {
 				// 足
 				float x = 4;
 
-				DrawLeg(x, 0, -1, 3);
+				DrawLeg(x, 0, -1, 4);
 				DrawLeg(x, 0, -0.5, 1);
 				DrawLeg(x, 0, 0, -1);
 				DrawLeg(x, 0, 0.5, -3);
-				DrawLeg(-x, 0, -1, 3);
+				DrawLeg(-x, 0, -1, 4);
 				DrawLeg(-x, 0, -0.5, 1);
 				DrawLeg(-x, 0, 0, -1);
 				DrawLeg(-x, 0, 0.5, -3);
@@ -45,7 +45,7 @@ void Ant::Draw() {
 	glPopMatrix();
 }
 
-void Ant::DrawHead(float x, float y, float z)
+void Spyder::DrawHead(float x, float y, float z)
 {
 	// 頭
 	glPushMatrix();
@@ -69,7 +69,7 @@ void Ant::DrawHead(float x, float y, float z)
 	glPopMatrix();
 }
 
-void Ant::DrawBody(float x, float y, float z)
+void Spyder::DrawBody(float x, float y, float z)
 {
 	glPushMatrix();
 	{
@@ -78,7 +78,7 @@ void Ant::DrawBody(float x, float y, float z)
 	glPopMatrix();
 }
 
-void Ant::DrawLeg(float x, float y, float z, int num)
+void Spyder::DrawLeg(float x, float y, float z, int num)
 {
 	glPushMatrix();
 	{
@@ -166,7 +166,7 @@ void Ant::DrawLeg(float x, float y, float z, int num)
 }
 
 // 尾の描画
-void Ant::DrawTale(float x, float y, float z)
+void Spyder::DrawTale(float x, float y, float z)
 {
 	glPushMatrix();
 	{
@@ -190,7 +190,7 @@ void Ant::DrawTale(float x, float y, float z)
 }
 
 // 目の描画
-void Ant::DrawEye(float x, float y, float z, double r, int slices, int stacks)
+void Spyder::DrawEye(float x, float y, float z, double r, int slices, int stacks)
 {
 	// 目
 	glPushMatrix();
@@ -202,7 +202,7 @@ void Ant::DrawEye(float x, float y, float z, double r, int slices, int stacks)
 }
 
 // 触覚の描画
-void Ant::DrawTactile(float x, float y, float z)
+void Spyder::DrawTactile(float x, float y, float z)
 {
 	glPushMatrix();
 	{
@@ -226,7 +226,7 @@ void Ant::DrawTactile(float x, float y, float z)
 	glPopMatrix();
 }
 // 糸の描画
-void Ant::DrawThread(float x, float y, float z,int angle)
+void Spyder::DrawThread(float x, float y, float z,int angle)
 {
 	glPushMatrix();
 	{
@@ -243,7 +243,7 @@ void Ant::DrawThread(float x, float y, float z,int angle)
 	glPopMatrix();
 }
 
-void Ant::MovePosition(float x, float y, float z)
+void Spyder::MovePosition(float x, float y, float z)
 {
 	position.x += x;
 	position.y += y;
@@ -251,7 +251,7 @@ void Ant::MovePosition(float x, float y, float z)
 }
 
 // アニメーション
-void Ant::Animation()
+void Spyder::Animation()
 {
 	if (legRotateZ < 90) {
 		legRotateZ += speed;

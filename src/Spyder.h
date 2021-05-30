@@ -1,7 +1,11 @@
 #pragma once
 #include "Vector3D.h"
+#include "SpyderBody.h"
+#include "SpyderHead.h"
+#include "SpyderLeg.h"
+#include "SpyderTale.h"
 
-class Ant {
+class Spyder {
 private:
 	double legRotateZ;
 	double legRotateY;
@@ -23,7 +27,7 @@ private:
 	// …
 	void DrawThread(float x, float y, float z,int angle);
 public:
-	Ant();
+	Spyder();
 	//•`‰æŠÖ”
 	void Draw();
 	// ˆÚ“®

@@ -1,14 +1,14 @@
 
 #include <stdlib.h>
 #include <GL/glut.h>
-#include "Ant.h"
+#include "Spyder.h"
 #include "Workspace.h"
 #include "Camera.h"
 
 static int shoulder = 0, elbow = 0, hand = 0;
 static Camera camera;
 static Workspace workspace;
-static Ant ant;
+static Spyder ant;
 
 unsigned char	mouseFlag = GL_FALSE;		// flag for moving or not
 int				xStart, yStart;				// start position when drug begins
@@ -100,6 +100,8 @@ void myDisplay(void)
 {
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_DEPTH_TEST);
+	
 	glPushMatrix();
 	{
 		glRotated(xAngle, 1.0, 0.0, 0.0);
@@ -115,6 +117,9 @@ void myDisplay(void)
 		glPopMatrix();
 	}
 	glPopMatrix();
+	
+	//glDisable(GL_DEPTH_TEST);
+	
 	// バックバッファの内容をフロントバッファに転送
 	glutSwapBuffers();
 }
@@ -258,6 +263,7 @@ void myMouseFunc(int button, int state, int x, int y)
 		mouseFlag = GL_FALSE;
 	}
 }
+
 int main(int argc, char** argv)
 {
 	// gultライブラリの初期化
