@@ -36,6 +36,13 @@ void Camera::MovePosition(float x, float y, float z)
 	position.z += z;
 }
 
+void Camera::SetPosition(float x, float y, float z)
+{
+	position.x = x;
+	position.y = y;
+	position.z = z;
+}
+
 void Camera::ChangeCamera(int num)
 {
 	cameraType = num;

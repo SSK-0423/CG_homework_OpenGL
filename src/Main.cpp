@@ -4,12 +4,13 @@
 #include "Spyder.h"
 #include "Workspace.h"
 #include "Camera.h"
+#include "Stage.h"
 
 static int shoulder = 0, elbow = 0, hand = 0;
 static Camera camera;
 static Workspace workspace;
 static Spyder spyder;
-
+static Stage stage;
 unsigned char	mouseFlag = GL_FALSE;		// flag for moving or not
 int				xStart, yStart;				// start position when drug begins
 double			xAngle = 0.0, yAngle = 0.0;	// angles of the teapot
@@ -43,11 +44,13 @@ void myDisplay(void)
 		glRotated(yAngle, 0.0, 1.0, 0.0);
 		glPushMatrix();
 		{
+			camera.SetPosition(spyder.position.x, spyder.position.y+20, spyder.position.z);
 			camera.Draw();
 			workspace.Draw();
 			spyder.Animation();
-			spyder.MovePosition(0.0, 0.0, -0.005);
 			spyder.Draw();
+			glColor3d(1, 1, 1);
+			stage.Draw();
 		}
 		glPopMatrix();
 	}

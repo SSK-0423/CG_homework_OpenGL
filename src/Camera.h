@@ -11,6 +11,8 @@ public:
 	void Draw();
 	// カメラの移動
 	void MovePosition(float x, float y, float z);
+	void SetPosition(float x, float y, float z);
+	void SetViewPosition(float x, float y, float z);
 	// カメラの回転
 	//void Rotate();
 	// カメラ変更

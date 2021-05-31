@@ -143,6 +143,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Debug.cpp" />
     <ClCompile Include="src\FrontLegAnimator.cpp" />
     <ClCompile Include="src\HindLegAnimator.cpp" />
     <ClCompile Include="src\Lerp.cpp" />
@@ -153,6 +154,7 @@
     <ClCompile Include="src\SpyderHead.cpp" />
     <ClCompile Include="src\SpyderLeg.cpp" />
     <ClCompile Include="src\SpyderTale.cpp" />
+    <ClCompile Include="src\Stage.cpp" />
     <ClCompile Include="src\Workspace.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +170,7 @@
     <ClInclude Include="src\SpyderHead.h" />
     <ClInclude Include="src\SpyderLeg.h" />
     <ClInclude Include="src\SpyderTale.h" />
+    <ClInclude Include="src\Stage.h" />
     <ClInclude Include="src\Vector3D.h" />
     <ClInclude Include="src\Workspace.h" />
     <ClInclude Include="src\HindLegAnimator.h" />

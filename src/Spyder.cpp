@@ -1,6 +1,8 @@
 #include "Spyder.h"
 #include "GL/glut.h"
 #include <math.h>
+#include "Debug.h"
+#include "Lerp.h"
 #define PI 3.141592
 
 FrontLegAnimator Spyder::frontLegAni;
@@ -22,10 +24,38 @@ void Spyder::InitAnimation()
 	leg[7].SetAnimator((Animator<double&, double&, double&, double&, float&>&)hindLegAni);
 }
 
+void Spyder::MoveAnimation()
+{
+	char buff[64];
+	sprintf_s(buff, "x:%f", position.x);
+	DrawString(buff, position.x, position.y, position.z+2);
+	sprintf_s(buff, "y:%f", position.y);
+	DrawString(buff, position.x, position.y, position.z);
+	sprintf_s(buff, "z:%f", position.z);
+	DrawString(buff, position.x, position.y, position.z - 2);
+	position.x = xLerp[state % xLerp.size()];
+	position.z = zLerp[state % zLerp.size()];
+	state += 1;
+	if (position.x == 0.0f && position.z == -30.0f	||
+		position.x == 30.0f && position.z == -30.0f ||
+		position.x == 30.0f && position.z == 30.0f	||
+		position.x == -30.0f && position.z == 30.0f	||
+		position.x == -30.0f && position.z == 0.0f) {
+		angle -= 90;
+	}
+	if (position.x == 0.0f && position.z == 0.0f) {
+		angle = 0;
+	}
+}
+
 Spyder::Spyder() {
+	angle = 0;
+	state = 0;
 	position.x = 0;
 	position.y = 0;
 	position.z = 0;
+	MakeLerpList(x,xLerp,3000);
+	MakeLerpList(z, zLerp, 3000);
 	InitAnimation();
 }
 
@@ -38,7 +68,8 @@ void Spyder::Draw() {
 		// 胴体
 		glPushMatrix();
 		{
-			glTranslated(0, 2, position.z);
+			glTranslated(position.x, 2, position.z);
+			glRotated(angle,0,1,0);
 			{
 				// 足
 				float x = 4;
@@ -75,6 +106,11 @@ void Spyder::MovePosition(float x, float y, float z)
 	position.z += z;
 }
 
+void Spyder::Rotate(int angle)
+{
+	this->angle = angle;
+}
+
 // 各パーツのアニメーション呼び出し
 void Spyder::Animation() {
 
@@ -105,6 +141,5 @@ void Spyder::Animation() {
 	hindLegAni.ChangeAnimeType(0);
 	leg[7].Animation();
 
-	head.Animation();
-	tale.Animation();
+	MoveAnimation();
 }
