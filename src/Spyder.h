@@ -33,6 +33,7 @@ private:
 	void InitAnimation();
 	// クモの移動アニメーション
 	void MoveAnimation();
+	// デバッグ用
 	void DebugDraw();
 public:
 	//座標
