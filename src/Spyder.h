@@ -33,6 +33,7 @@ private:
 	void InitAnimation();
 	// クモの移動アニメーション
 	void MoveAnimation();
+	void DebugDraw();
 public:
 	//座標
 	Vector3D position;
@@ -45,4 +46,6 @@ public:
 	void Rotate(int angle);
 	// アニメーション
 	void Animation();
+	// 角度取得
+	int GetAngle();
 };

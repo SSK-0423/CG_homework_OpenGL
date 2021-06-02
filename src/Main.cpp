@@ -1,4 +1,3 @@
-
 #include <stdlib.h>
 #include <GL/glut.h>
 #include "Spyder.h"
@@ -6,7 +5,6 @@
 #include "Camera.h"
 #include "Stage.h"
 
-static int shoulder = 0, elbow = 0, hand = 0;
 static Camera camera;
 static Workspace workspace;
 static Spyder spyder;
@@ -37,14 +35,16 @@ void myDisplay(void)
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
-	
+
 	glPushMatrix();
 	{
 		glRotated(xAngle, 1.0, 0.0, 0.0);
 		glRotated(yAngle, 0.0, 1.0, 0.0);
 		glPushMatrix();
 		{
-			camera.SetPosition(spyder.position.x, spyder.position.y+20, spyder.position.z);
+			camera.SetPosition(spyder.position.x, spyder.position.y + 5, spyder.position.z - 15);
+			camera.SetViewPosition(spyder.position.x, spyder.position.y, spyder.position.z - 1);
+			camera.Rotate(spyder.GetAngle());
 			camera.Draw();
 			workspace.Draw();
 			spyder.Animation();
@@ -55,9 +55,9 @@ void myDisplay(void)
 		glPopMatrix();
 	}
 	glPopMatrix();
-	
+
 	//glDisable(GL_DEPTH_TEST);
-	
+
 	// バックバッファの内容をフロントバッファに転送
 	glutSwapBuffers();
 }
@@ -84,41 +84,33 @@ void myKeyboard(unsigned char key, int x, int y)
 {
 	switch (key) {
 	case 'w':
-		shoulder = (shoulder + 5) % 360;
 		camera.MovePosition(0, 0, 1);
 		glutPostRedisplay();
 		break;
 	case 'W':
-		shoulder = (shoulder - 5) % 360;
 		camera.MovePosition(0, 0, 1);
 		glutPostRedisplay();
 		break;
 	case 's':
-		shoulder = (shoulder + 5) % 360;
 		camera.MovePosition(0, 0, -1);
 		glutPostRedisplay();
 		break;
 	case 'S':
-		shoulder = (shoulder - 5) % 360;
 		camera.MovePosition(0, 0, -1);
 		glutPostRedisplay();
 		break;
 	case 'e':
-		elbow = (elbow + 5) % 360;
 		camera.MovePosition(0, -1, 0);
 		glutPostRedisplay();
 		break;
 	case 'E':
-		elbow = (elbow - 5) % 360;
 		camera.MovePosition(0, -1, 0);
 		glutPostRedisplay();
 		break;
 	case 'h':
-		hand = (hand + 5) % 360;
 		glutPostRedisplay();
 		break;
 	case 'H':
-		hand = (hand - 5) % 360;
 		glutPostRedisplay();
 		break;
 	case 'd':

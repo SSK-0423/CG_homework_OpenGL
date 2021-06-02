@@ -10,9 +10,21 @@ void Stage::DrawBuilding(double x, double y, double z, double sizeX, double size
 	}
 	glPopMatrix();
 }
+
 void Stage::Draw() {
 	DrawBuilding(10, 7.5, -10, 5, 15, 5);
 	DrawBuilding(17, 7.5, -10, 5, 15, 5);
+	DrawBuilding(10, 7.5, -4, 5, 15, 5);
+	DrawBuilding(17, 7.5, -4, 5, 15, 5);
+	DrawBuilding(10, 7.5, 10, 5, 15, 5);
+	DrawBuilding(17, 7.5, 10, 5, 15, 5);
+	DrawBuilding(10, 7.5, 16, 5, 15, 5);
+	DrawBuilding(17, 7.5, 16, 5, 15, 5);
+
 	DrawBuilding(-10, 7.5, -10, 5, 15, 5);
 	DrawBuilding(-17, 7.5, -10, 5, 15, 5);
+	DrawBuilding(-10, 7.5, 10, 5, 15, 5);
+	DrawBuilding(-17, 7.5, 10, 5, 15, 5);
+	DrawBuilding(-10, 7.5, 16, 5, 15, 5);
+	DrawBuilding(-17, 7.5, 16, 5, 15, 5);
 }

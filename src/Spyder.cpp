@@ -26,20 +26,14 @@ void Spyder::InitAnimation()
 
 void Spyder::MoveAnimation()
 {
-	char buff[64];
-	sprintf_s(buff, "x:%f", position.x);
-	DrawString(buff, position.x, position.y, position.z+2);
-	sprintf_s(buff, "y:%f", position.y);
-	DrawString(buff, position.x, position.y, position.z);
-	sprintf_s(buff, "z:%f", position.z);
-	DrawString(buff, position.x, position.y, position.z - 2);
+	DebugDraw();
 	position.x = xLerp[state % xLerp.size()];
 	position.z = zLerp[state % zLerp.size()];
 	state += 1;
-	if (position.x == 0.0f && position.z == -30.0f	||
+	if (position.x == 0.0f && position.z == -30.0f ||
 		position.x == 30.0f && position.z == -30.0f ||
-		position.x == 30.0f && position.z == 30.0f	||
-		position.x == -30.0f && position.z == 30.0f	||
+		position.x == 30.0f && position.z == 30.0f ||
+		position.x == -30.0f && position.z == 30.0f ||
 		position.x == -30.0f && position.z == 0.0f) {
 		angle -= 90;
 	}
@@ -48,13 +42,24 @@ void Spyder::MoveAnimation()
 	}
 }
 
+void Spyder::DebugDraw()
+{
+	char buff[64];
+	sprintf_s(buff, "x:%f", position.x);
+	DrawString(buff, position.x, position.y, position.z + 2);
+	sprintf_s(buff, "y:%f", position.y);
+	DrawString(buff, position.x, position.y, position.z);
+	sprintf_s(buff, "z:%f", position.z);
+	DrawString(buff, position.x, position.y, position.z - 2);
+}
+
 Spyder::Spyder() {
 	angle = 0;
 	state = 0;
 	position.x = 0;
 	position.y = 0;
 	position.z = 0;
-	MakeLerpList(x,xLerp,3000);
+	MakeLerpList(x, xLerp, 3000);
 	MakeLerpList(z, zLerp, 3000);
 	InitAnimation();
 }
@@ -69,7 +74,7 @@ void Spyder::Draw() {
 		glPushMatrix();
 		{
 			glTranslated(position.x, 2, position.z);
-			glRotated(angle,0,1,0);
+			glRotated(angle, 0, 1, 0);
 			{
 				// 足
 				float x = 4;
@@ -110,7 +115,9 @@ void Spyder::Rotate(int angle)
 {
 	this->angle = angle;
 }
-
+int Spyder::GetAngle() {
+	return angle;
+}
 // 各パーツのアニメーション呼び出し
 void Spyder::Animation() {
 
