@@ -194,12 +194,34 @@ void myMouseFunc(int button, int state, int x, int y)
 	}
 }
 
+void mySetLight()
+{
+	float light0_position[] = { 1.0,  1.0, 1.0, 1.0 };	// point light source
+	float light1_position[] = { -1.0, -1.0, 1.0, 1.0 };	// point light source
+	float light1_ambient[] = { 0.0, 1.0, 0.0, 1.0 };
+	float light1_diffuse[] = { 0.0, 1.0, 0.0, 1.0 };
+	float light1_specular[] = { 0.0, 1.0, 0.0, 1.0 };
+
+	/* Set up LIGHT0 which uses the default parameters except position */
+	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
+	/* Set up LIGHT1 */
+	glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
+	glLightfv(GL_LIGHT1, GL_AMBIENT, light1_ambient);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, light1_diffuse);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, light1_specular);
+
+	glEnable(GL_LIGHT0);		// enable the 0th light
+	glEnable(GL_LIGHT1);		// enable the 1st light
+}
+
 int main(int argc, char** argv)
 {
 	// gultライブラリの初期化
 	glutInit(&argc, argv);
 	// 初期化処理
 	myInit(argv[0]);
+	// ライトの設定
+	mySetLight();
 	// 
 	glutReshapeFunc(myReshape);
 	// キーボード、マウス入力のコールバック関数セット
