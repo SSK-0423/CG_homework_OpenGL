@@ -11,7 +11,7 @@ void SpyderTale::DrawThread(float x, float y, float z, int angle)
 		glRotated(-90 - 30, 1, 0, 0);
 		glTranslated(0, 0, 1.5);
 		glScaled(0.1, 0.1, 12);
-		glutWireCube(1);
+		glutSolidCube(1);
 	}
 	glPopMatrix();
 }
@@ -33,7 +33,7 @@ void SpyderTale::Draw(float x, float y, float z) {
 
 		glColor3d(0.5, 0.25, 0);
 		glScaled(4, 4, 5);
-		glutWireCube(1);
+		glutSolidCube(1);
 	}
 	glPopMatrix();
 }

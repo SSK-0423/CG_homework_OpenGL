@@ -6,7 +6,7 @@ void Stage::DrawBuilding(double x, double y, double z, double sizeX, double size
 	{
 		glTranslated(x,y,z);
 		glScaled(sizeX,sizeY,sizeZ);
-		glutWireCube(1);
+		glutSolidCube(1);
 	}
 	glPopMatrix();
 }

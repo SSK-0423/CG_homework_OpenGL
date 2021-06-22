@@ -44,20 +44,20 @@ void SpyderLeg::Draw(float x, float y, float z, int num) {
 						{
 							glColor3d(0.5, 0.4, 0);
 							glScaled(2, 1, 0.5);
-							glutWireCube(1);
+							glutSolidCube(1);
 							glColor3d(0.5, 0.25, 0);
 						}
 						glPopMatrix();
 					}
 					glPopMatrix();
 					glScaled(sizeX, 1, 0.5);
-					glutWireCube(1);
+					glutSolidCube(1);
 				}
 				glPopMatrix();
 			}
 			glPopMatrix();
 			glScaled(4, 1, 0.5);
-			glutWireCube(1);
+			glutSolidCube(1);
 		}
 		// ç∂ë´
 		else {
@@ -88,20 +88,20 @@ void SpyderLeg::Draw(float x, float y, float z, int num) {
 						{
 							glColor3d(0.5, 0.4, 0);
 							glScaled(2, 1, 0.5);
-							glutWireCube(1);
+							glutSolidCube(1);
 							glColor3d(0.5, 0.25, 0);
 						}
 						glPopMatrix();
 					}
 					glPopMatrix();
 					glScaled(sizeX, 1, 0.5);
-					glutWireCube(1);
+					glutSolidCube(1);
 				}
 				glPopMatrix();
 			}
 			glPopMatrix();
 			glScaled(4, 1, 0.5);
-			glutWireCube(1);
+			glutSolidCube(1);
 		}
 	}
 	glPopMatrix();

@@ -97,7 +97,7 @@ void Spyder::Draw() {
 				tale.Draw(0, 0, 4);
 			}
 			glScaled(4.0, 2.0, 3.0);
-			glutWireCube(1);
+			glutSolidCube(1);
 		}
 		glPopMatrix();
 	}
