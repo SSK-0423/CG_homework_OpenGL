@@ -4,11 +4,19 @@
 #include "Workspace.h"
 #include "Camera.h"
 #include "Stage.h"
+#include "GameObject.hpp"
+#include "ComponentSystem.hpp"
+#include "Debug.h"
+#include "FPS.h"
 
+#define WINDOW_WIDTH 500
+#define WINDOW_HEIGHT 500
 static Camera camera;
 static Workspace workspace;
 static Spyder spyder;
 static Stage stage;
+static GameObject* obj;
+static FPS fps;
 unsigned char	mouseFlag = GL_FALSE;		// flag for moving or not
 int				xStart, yStart;				// start position when drug begins
 double			xAngle = 0.0, yAngle = 0.0;	// angles of the teapot
@@ -20,7 +28,7 @@ void myInit(char* progname)
 	// GLUT_DOUBLE ダブルバッファの使用を宣言
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 	// ウィンドウサイズ指定
-	glutInitWindowSize(500, 500);
+	glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	// ウィンドウの左上位置の指定
 	glutInitWindowPosition(0, 0);
 	// ウィンドウ生成 progname = ウィンドウネーム
@@ -35,7 +43,7 @@ void myDisplay(void)
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
-
+	//glEnable(GL_LIGHTING);
 	glPushMatrix();
 	{
 		glRotated(xAngle, 1.0, 0.0, 0.0);
@@ -47,8 +55,8 @@ void myDisplay(void)
 			camera.Rotate(spyder.GetAngle());
 			camera.Draw();
 			workspace.Draw();
-			spyder.Animation();
-			spyder.Draw();
+			//spyder.Animation();
+			//spyder.Draw();
 			glColor3d(1, 1, 1);
 			stage.Draw();
 		}
@@ -56,7 +64,12 @@ void myDisplay(void)
 	}
 	glPopMatrix();
 
-	//glDisable(GL_DEPTH_TEST);
+	glLoadIdentity();
+	char buff[64];
+	sprintf_s(buff, "FPS:%.1f", fps.GetFPS());
+	DrawString(buff, -1, 0.9, -1);
+
+	glDisable(GL_DEPTH_TEST);
 
 	// バックバッファの内容をフロントバッファに転送
 	glutSwapBuffers();
@@ -162,7 +175,9 @@ void myIdle(void)
 {
 	// ディスプレコールバック関数を呼ぶ
 	// このプログラムの場合はmyDisplay
+	fps.Update();
 	glutPostRedisplay();
+	fps.Wait();
 }
 
 void myMouseMotion(int x, int y)
@@ -233,6 +248,8 @@ int main(int argc, char** argv)
 	glutIdleFunc(myIdle);
 	// 描画用関数(ディスプレイコールバック関数)セット
 	glutDisplayFunc(myDisplay);
+
+	fps.SetFPS(60);
 	// イベント処理ループ
 	glutMainLoop();
 

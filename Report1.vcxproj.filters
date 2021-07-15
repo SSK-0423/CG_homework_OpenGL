@@ -13,6 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\Object">
+      <UniqueIdentifier>{caefd7d5-8c49-4dfb-a256-1a16b8d1ad28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game">
+      <UniqueIdentifier>{a7f18c42-e3c1-42ce-8138-3d98abdca1d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\System/Interface">
+      <UniqueIdentifier>{32c8733d-0402-4ca7-9a09-48c670e3d0d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Object">
+      <UniqueIdentifier>{9ea1c8d8-3203-42af-a5bc-d03701f0f489}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Components">
+      <UniqueIdentifier>{d8cfccd3-ab14-4456-aa57-4a7785468879}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -56,6 +71,18 @@
     </ClCompile>
     <ClCompile Include="src\Debug.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Texture.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Building.cpp">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SkyBox.cpp">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Floor.cpp">
+      <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +133,72 @@
     </ClInclude>
     <ClInclude Include="src\Stage.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AudioSource.hpp">
+      <Filter>ヘッダー ファイル\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Transform.hpp">
+      <Filter>ヘッダー ファイル\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object.hpp">
+      <Filter>ヘッダー ファイル\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject.hpp">
+      <Filter>ヘッダー ファイル\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game.hpp">
+      <Filter>ヘッダー ファイル\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ICharacter.h">
+      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Enemy.h">
+      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player.h">
+      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IWeapon.h">
+      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AssaltRifle.h">
+      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AR_21.h">
+      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ICollider.h">
+      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ComponentSystem.hpp">
+      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component.hpp">
+      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ColliderCube.h">
+      <Filter>ヘッダー ファイル\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TestObject.h">
+      <Filter>ヘッダー ファイル\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameData.h">
+      <Filter>ヘッダー ファイル\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FPS.h">
+      <Filter>ヘッダー ファイル\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Texture.h">
+      <Filter>ヘッダー ファイル\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Building.h">
+      <Filter>ヘッダー ファイル\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SkyBox.h">
+      <Filter>ヘッダー ファイル\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Floor.h">
+      <Filter>ヘッダー ファイル\Game\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

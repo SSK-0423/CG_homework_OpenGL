@@ -5,7 +5,7 @@ MiddleLegAnimator::MiddleLegAnimator()
 {
 	type = 0;
 	state = 0;
-	int step = 400;
+	int step = 30;
 	MakeLerpList(legRotateZList, legZLerp, step);
 	MakeLerpList(legRotateYList, legYLerp, step);
 }

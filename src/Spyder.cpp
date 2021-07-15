@@ -59,8 +59,8 @@ Spyder::Spyder() {
 	position.x = 0;
 	position.y = 0;
 	position.z = 0;
-	MakeLerpList(x, xLerp, 3000);
-	MakeLerpList(z, zLerp, 3000);
+	MakeLerpList(x, xLerp, 300);
+	MakeLerpList(z, zLerp, 300);
 	InitAnimation();
 }
 

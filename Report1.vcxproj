@@ -143,11 +143,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Building.cpp" />
     <ClCompile Include="src\Debug.cpp" />
+    <ClCompile Include="src\Floor.cpp" />
     <ClCompile Include="src\FrontLegAnimator.cpp" />
     <ClCompile Include="src\HindLegAnimator.cpp" />
     <ClCompile Include="src\Lerp.cpp" />
     <ClCompile Include="src\MiddleLegAnimator.cpp" />
+    <ClCompile Include="src\SkyBox.cpp" />
     <ClCompile Include="src\Spyder.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\Main.cpp" />
@@ -155,22 +158,45 @@
     <ClCompile Include="src\SpyderLeg.cpp" />
     <ClCompile Include="src\SpyderTale.cpp" />
     <ClCompile Include="src\Stage.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Workspace.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Animator.h" />
+    <ClInclude Include="src\AR_21.h" />
+    <ClInclude Include="src\AssaltRifle.h" />
+    <ClInclude Include="src\AudioSource.hpp" />
     <ClInclude Include="src\BodyPart.h" />
+    <ClInclude Include="src\Building.h" />
+    <ClInclude Include="src\ColliderCube.h" />
+    <ClInclude Include="src\Component.hpp" />
+    <ClInclude Include="src\ComponentSystem.hpp" />
     <ClInclude Include="src\Debug.h" />
+    <ClInclude Include="src\Enemy.h" />
+    <ClInclude Include="src\Floor.h" />
+    <ClInclude Include="src\FPS.h" />
     <ClInclude Include="src\FrontLegAnimator.h" />
+    <ClInclude Include="src\Game.hpp" />
+    <ClInclude Include="src\GameData.h" />
+    <ClInclude Include="src\GameObject.hpp" />
+    <ClInclude Include="src\ICharacter.h" />
+    <ClInclude Include="src\ICollider.h" />
+    <ClInclude Include="src\IWeapon.h" />
     <ClInclude Include="src\LegAnimator.h" />
     <ClInclude Include="src\Lerp.h" />
     <ClInclude Include="src\MiddleLegAnimator.h" />
+    <ClInclude Include="src\Object.hpp" />
+    <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\SkyBox.h" />
     <ClInclude Include="src\Spyder.h" />
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\SpyderHead.h" />
     <ClInclude Include="src\SpyderLeg.h" />
     <ClInclude Include="src\SpyderTale.h" />
     <ClInclude Include="src\Stage.h" />
+    <ClInclude Include="src\TestObject.h" />
+    <ClInclude Include="src\Texture.h" />
+    <ClInclude Include="src\Transform.hpp" />
     <ClInclude Include="src\Vector3D.h" />
     <ClInclude Include="src\Workspace.h" />
     <ClInclude Include="src\HindLegAnimator.h" />

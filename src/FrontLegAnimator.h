@@ -13,7 +13,6 @@ private:
 	std::vector<int> secondJoint = { 30,30,15,30 };
 	std::vector<float> secondJointLerp;
 
-
 public:
 	FrontLegAnimator();
 	void Animation(double& legRotateY, double& legRotateZ, double& firstJointRotate, double& secondJointRotate,float& speed);

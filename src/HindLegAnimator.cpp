@@ -5,7 +5,7 @@ HindLegAnimator::HindLegAnimator()
 {
 	state = 0;
 	type = 0;
-	int step = 400;
+	int step = 30;
 	MakeLerpList(legRotateList, legLerp, step);
 	MakeLerpList(firstJoint, firstJointLerp, step);
 	MakeLerpList(secondJoint, secondJointLerp, step);

@@ -1,30 +1,50 @@
 #include "Stage.h"
 #include "GL/glut.h"
-void Stage::DrawBuilding(double x, double y, double z, double sizeX, double sizeY, double sizeZ)
+#include "GameData.h"
+#include "Transform.hpp"
+
+void Stage::MakeStage()
 {
-	glPushMatrix();
-	{
-		glTranslated(x,y,z);
-		glScaled(sizeX,sizeY,sizeZ);
-		glutSolidCube(1);
+	for (int i = -MAP_HEIGHT / 2; i < MAP_HEIGHT / 2; i++) {
+		for (int j = -MAP_WIDTH / 2; j < MAP_WIDTH / 2; j++) {
+			//床オブジェクト追加
+			if (map[i + 4][j + 4] == 0) {
+				GameObject* obj = new GameObject();
+				obj->AddComponent<Floor>();
+				obj->GetComponent<Transform>()->SetPosition(10 * j, -1, 10 * i);
+				obj->GetComponent<Transform>()->SetSize(10, 1, 10);
+				stageObjList.push_back(obj);
+			}
+
+			//ビルオブジェクト追加
+			if (map[i + 4][j + 4] == 1) {
+				GameObject* obj = new GameObject();
+				obj->AddComponent<Building>();
+				obj->GetComponent<Transform>()->SetPosition(10 * j, 7.5, 10 * i);
+				obj->GetComponent<Transform>()->SetSize(5, 15, 5);
+				stageObjList.push_back(obj);
+			}
+		}
 	}
-	glPopMatrix();
+}
+
+Stage::Stage()
+{
+	skybox = new GameObject();
+	skybox->AddComponent<SkyBox>();
+	MakeStage();
+}
+
+Stage::~Stage() {
+	for (auto obj : stageObjList) {
+		delete obj;
+	}
+	stageObjList.clear();
 }
 
 void Stage::Draw() {
-	DrawBuilding(10, 7.5, -10, 5, 15, 5);
-	DrawBuilding(17, 7.5, -10, 5, 15, 5);
-	DrawBuilding(10, 7.5, -4, 5, 15, 5);
-	DrawBuilding(17, 7.5, -4, 5, 15, 5);
-	DrawBuilding(10, 7.5, 10, 5, 15, 5);
-	DrawBuilding(17, 7.5, 10, 5, 15, 5);
-	DrawBuilding(10, 7.5, 16, 5, 15, 5);
-	DrawBuilding(17, 7.5, 16, 5, 15, 5);
-
-	DrawBuilding(-10, 7.5, -10, 5, 15, 5);
-	DrawBuilding(-17, 7.5, -10, 5, 15, 5);
-	DrawBuilding(-10, 7.5, 10, 5, 15, 5);
-	DrawBuilding(-17, 7.5, 10, 5, 15, 5);
-	DrawBuilding(-10, 7.5, 16, 5, 15, 5);
-	DrawBuilding(-17, 7.5, 16, 5, 15, 5);
+	//skybox->Draw();
+	for (auto obj : stageObjList) {
+		obj->Draw();
+	}
 }

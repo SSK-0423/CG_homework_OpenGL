@@ -32,11 +32,11 @@ void Workspace::DrawFloor()
 {
 	glColor3d(1.0, 1.0, 1.0);		// draw floor
 	glBegin(GL_LINES);
-	for (int i = -35; i < 36; i += 2) {
-		glVertex3i(i, 0, -35);
-		glVertex3i(i, 0, 35);
-		glVertex3i(-50, 0, i);
-		glVertex3i(50, 0, i);
+	for (int i = -63; i < 64; i++) {
+		glVertex3i(i * 2, 0, -256);
+		glVertex3i(i * 2, 0, 256);
+		glVertex3i(-256, 0, i * 2);
+		glVertex3i(256, 0, i * 2);
 	}
 	glEnd();
 }
