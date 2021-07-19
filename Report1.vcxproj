@@ -148,9 +148,11 @@
     <ClCompile Include="src\Floor.cpp" />
     <ClCompile Include="src\FrontLegAnimator.cpp" />
     <ClCompile Include="src\HindLegAnimator.cpp" />
+    <ClCompile Include="src\ICharacter.cpp" />
     <ClCompile Include="src\Lerp.cpp" />
+    <ClCompile Include="src\Material.cpp" />
     <ClCompile Include="src\MiddleLegAnimator.cpp" />
-    <ClCompile Include="src\SkyBox.cpp" />
+    <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Spyder.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\Main.cpp" />
@@ -160,6 +162,7 @@
     <ClCompile Include="src\Stage.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Workspace.cpp" />
+    <ClCompile Include="src\SkyBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Animator.h" />
@@ -184,6 +187,7 @@
     <ClInclude Include="src\IWeapon.h" />
     <ClInclude Include="src\LegAnimator.h" />
     <ClInclude Include="src\Lerp.h" />
+    <ClInclude Include="src\Material.h" />
     <ClInclude Include="src\MiddleLegAnimator.h" />
     <ClInclude Include="src\Object.hpp" />
     <ClInclude Include="src\Player.h" />

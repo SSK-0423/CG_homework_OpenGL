@@ -2,5 +2,4 @@
 class ICharacter {
 private:
 public:
-
 };

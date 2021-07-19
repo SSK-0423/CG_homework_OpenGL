@@ -62,12 +62,16 @@ Spyder::Spyder() {
 	MakeLerpList(x, xLerp, 300);
 	MakeLerpList(z, zLerp, 300);
 	InitAnimation();
+	bodyTexture = new Texture("textures/spyderbody.ppm");
 }
 
 void Spyder::Draw() {
 	//茶色
-	glColor3d(0.5, 0.25, 0);
+	//glColor3d(0.5, 0.25, 0);
+	bodyTexture->SetTexture();
+	//glMaterialfv(GL_FRONT, GL_AMBIENT, mtr);
 	// 最上位の単位行列をコピー
+	glEnable(GL_TEXTURE_2D);
 	glPushMatrix();
 	{
 		// 胴体
@@ -96,12 +100,14 @@ void Spyder::Draw() {
 				// 尾
 				tale.Draw(0, 0, 4);
 			}
+
 			glScaled(4.0, 2.0, 3.0);
 			glutSolidCube(1);
 		}
 		glPopMatrix();
 	}
 	glPopMatrix();
+	glDisable(GL_TEXTURE_2D);
 }
 
 void Spyder::MovePosition(float x, float y, float z)

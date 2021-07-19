@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <GL/glut.h>
 #include "Component.hpp"
-#define	imageWidth 256
-#define	imageHeight 256
+#define imageWidth 256
+#define imageHeight 256
 
 class Texture : public Component {
 private:
@@ -14,6 +14,5 @@ public:
 	void Update();
 	void Draw();
 	void ReadPPMImage(const char* filepath);
-	void SetUpTexture(const char* filepath);
 	void SetTexture();
 };

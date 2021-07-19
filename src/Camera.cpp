@@ -1,14 +1,14 @@
 #include "Camera.h"
 #include "GL/glut.h"
-
+#include "GameData.h"
 Camera::Camera() : cameraType(0)
 {
 	position.x = 0;
 	position.y = 10;
 	position.z = 1;
 	viewPosition.x = 0;
-	viewPosition.y = -10;
-	viewPosition.z = -1;
+	viewPosition.y = 3;
+	viewPosition.z = -3;
 	angle = 0;
 }
 
@@ -48,6 +48,9 @@ void Camera::SetPosition(float x, float y, float z)
 	position.z = z;
 }
 
+void Camera::SetPosition(Position3D<float> pos) {
+	position = pos;
+}
 void Camera::ChangeCamera(int num)
 {
 	cameraType = num;
@@ -58,7 +61,9 @@ void Camera::SetViewPosition(float x, float y, float z) {
 	viewPosition.y = y;
 	viewPosition.z = z;
 }
-
+void Camera::SetViewPosition(Position3D<float> pos) {
+	viewPosition = pos;
+}
 void Camera::Rotate(int angle)
 {
 	this->angle = angle;

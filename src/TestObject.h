@@ -2,16 +2,15 @@
 #include "Component.hpp"
 #include "GameData.h"
 #include "Texture.h"
+#include "Transform.hpp"
 #include <GL/glut.h>
 
 class TestObjcet : public Component {
 private:
 	Texture* texture;
-	//unsigned char texImage[imageHeight][imageWidth][3];
 public:
 	TestObjcet() {
-		texture = new Texture("textures/texture1.ppm");
-		//SetUpTexture("textures/texture1.ppm");
+		texture = new Texture("textures/building2.ppm");
 	}
 
 	~TestObjcet() {
@@ -19,11 +18,13 @@ public:
 
 	void Update() {}
 	void Draw() {
+		texture->SetTexture();
 		glEnable(GL_TEXTURE_2D);
 		glPushMatrix();
 		{
 			Size3D<float> size;
 			size = parent->GetComponent<Transform>()->GetSize();
+			glTranslated(0, 2, 0);
 			glScaled(size.width, size.height, size.depth);
 			glutSolidCube(1);
 		}

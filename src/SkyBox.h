@@ -5,6 +5,7 @@
 class SkyBox : public Component {
 private:
 	Texture* texture;
+
 public:
 	SkyBox();
 	~SkyBox();

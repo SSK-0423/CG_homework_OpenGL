@@ -46,4 +46,20 @@ public:
 		componentList.push_back(component);
 		return component;
 	}
+
+	template <class T,class K, class ...U>
+	T* AddComponent(K k, U... u) {
+		//コンポーネントが既に存在するかチェック
+		for (auto comp : componentList) {
+			// #ダウンキャストは危険(?)
+			T* castComp = dynamic_cast<T*>(comp);
+			if (castComp != nullptr) {
+				return nullptr;
+			}
+		}
+		T* component = new T(k, u...);
+		component->SetParentObject(*this);
+		componentList.push_back(component);
+		return component;
+	}
 };

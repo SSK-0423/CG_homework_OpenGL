@@ -8,18 +8,35 @@
 #include "ComponentSystem.hpp"
 #include "Debug.h"
 #include "FPS.h"
+#include "Player.h"
+#include "GameData.h"
+#include "Building.h"
 
 #define WINDOW_WIDTH 500
 #define WINDOW_HEIGHT 500
+
 static Camera camera;
 static Workspace workspace;
 static Spyder spyder;
 static Stage stage;
-static GameObject* obj;
+static GameObject player;
 static FPS fps;
+static Transform* pTransform;
+static GameObject* obj;
+static GameObject* obj2;
 unsigned char	mouseFlag = GL_FALSE;		// flag for moving or not
 int				xStart, yStart;				// start position when drug begins
 double			xAngle = 0.0, yAngle = 0.0;	// angles of the teapot
+static Position3D<float> playerPos;
+float initMtr[4] = { 1.0,1.0,1.0,0.0 };
+
+static MaterialParam sun = {
+	{1.0,1.0,0.0,1.0},
+	{1.0,1.0,0.0,1.0},
+	{1.0,1.0,0.0,1.0},
+	{1.0,1.0,0.0,1.0},
+	128
+};
 
 // 初期化処理をまとめた関数
 void myInit(char* progname)
@@ -33,33 +50,41 @@ void myInit(char* progname)
 	glutInitWindowPosition(0, 0);
 	// ウィンドウ生成 progname = ウィンドウネーム
 	glutCreateWindow(progname);
+	glShadeModel(GL_FLAT);
 	// 初期色(?)
-	glClearColor(0.0, 0.0, 0.0, 0.0);
+	//glClearColor(0.0, 0.0, 0.0, 0.0);
+	glClearColor(0.0, 0.85, 1.0, 1.0);
 }
 
 //描画関数
 void myDisplay(void)
 {
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
-	//glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_NORMALIZE);
 	glPushMatrix();
 	{
-		glRotated(xAngle, 1.0, 0.0, 0.0);
-		glRotated(yAngle, 0.0, 1.0, 0.0);
 		glPushMatrix();
 		{
-			camera.SetPosition(spyder.position.x, spyder.position.y + 5, spyder.position.z - 15);
-			camera.SetViewPosition(spyder.position.x, spyder.position.y, spyder.position.z - 1);
-			camera.Rotate(spyder.GetAngle());
-			camera.Draw();
-			workspace.Draw();
-			//spyder.Animation();
-			//spyder.Draw();
-			glColor3d(1, 1, 1);
+			glMaterialfv(GL_FRONT, GL_AMBIENT, initMtr);
+			player.GetComponent<Transform>()->SetRotateAngle(0,yAngle,0);
+			player.Draw();
+			glMaterialfv(GL_FRONT, GL_AMBIENT, initMtr);
+			spyder.Animation();
+			spyder.Draw();
+			//workspace.Draw();
+			glMaterialfv(GL_FRONT, GL_AMBIENT, initMtr);
 			stage.Draw();
+			//obj->Draw();
+			//obj2->Draw();
 		}
+		glMaterialfv(GL_FRONT, GL_AMBIENT, sun.ambient);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, sun.diffuse);
+		glMaterialfv(GL_FRONT, GL_SPECULAR, sun.specular);
+		glMaterialfv(GL_FRONT, GL_EMISSION, sun.emission);
+		glMaterialfv(GL_FRONT, GL_SHININESS, &sun.shininess);
+		glutSolidSphere(4, 10, 10);
 		glPopMatrix();
 	}
 	glPopMatrix();
@@ -70,7 +95,8 @@ void myDisplay(void)
 	DrawString(buff, -1, 0.9, -1);
 
 	glDisable(GL_DEPTH_TEST);
-
+	glDisable(GL_LIGHTING);
+	glDisable(GL_NORMALIZE);
 	// バックバッファの内容をフロントバッファに転送
 	glutSwapBuffers();
 }
@@ -85,7 +111,7 @@ void myReshape(int width, int height)
 	glLoadIdentity();
 	// 透視投影の設定(視野角、縦横比、前方クリップ面(z)、後方クリップ面(z) )
 	// スタックの最上位にこの行列を格納
-	gluPerspective(90.0, (double)width / (double)height, 0.1, 100.0);
+	gluPerspective(90.0, (double)width / (double)height, 0.1, 150.0);
 	// モデル変換行列スタック
 	glMatrixMode(GL_MODELVIEW);
 	// スタックの最上位に単位行列を格納
@@ -95,73 +121,71 @@ void myReshape(int width, int height)
 // キー入力関数
 void myKeyboard(unsigned char key, int x, int y)
 {
+	Position3D<float> position;
+	position = player.GetComponent<Transform>()->GetPosition();
 	switch (key) {
 	case 'w':
-		camera.MovePosition(0, 0, 1);
+		player.GetComponent<Player>()->MoveForward(1);
 		glutPostRedisplay();
 		break;
 	case 'W':
-		camera.MovePosition(0, 0, 1);
+		player.GetComponent<Player>()->MoveForward(1);
 		glutPostRedisplay();
 		break;
 	case 's':
-		camera.MovePosition(0, 0, -1);
+		player.GetComponent<Player>()->MoveForward(-1);
 		glutPostRedisplay();
 		break;
 	case 'S':
-		camera.MovePosition(0, 0, -1);
-		glutPostRedisplay();
-		break;
-	case 'e':
-		camera.MovePosition(0, -1, 0);
-		glutPostRedisplay();
-		break;
-	case 'E':
-		camera.MovePosition(0, -1, 0);
-		glutPostRedisplay();
-		break;
-	case 'h':
-		glutPostRedisplay();
-		break;
-	case 'H':
+		player.GetComponent<Player>()->MoveForward(-1);
 		glutPostRedisplay();
 		break;
 	case 'd':
-		camera.MovePosition(1, 0, 0);
 		glutPostRedisplay();
 		break;
 	case 'D':
-		camera.MovePosition(1, 0, 0);
 		glutPostRedisplay();
 		break;
 	case 'a':
-		camera.MovePosition(-1, 0, 0);
 		glutPostRedisplay();
 		break;
 	case 'A':
-		camera.MovePosition(-1, 0, 0);
 		glutPostRedisplay();
 		break;
-	case 'q':
-		camera.MovePosition(0, 1, 0);
+	case 'e':
+		player.GetComponent<Transform>()->AddRotateAngle(0, 1, 0);
 		glutPostRedisplay();
 		break;
-	case 'Q':
-		camera.MovePosition(0, 1, 0);
+	case 'E':
+		player.GetComponent<Transform>()->AddRotateAngle(0, 1, 0);
 		glutPostRedisplay();
 		break;
-	case '1':
-		camera.ChangeCamera(0);
-		break;
-	case '2':
-		camera.ChangeCamera(1);
-		break;
-	case '3':
-		camera.ChangeCamera(2);
-		break;
-	case '4':
-		camera.ChangeCamera(3);
-		break;
+		//case 'h':
+		//	glutPostRedisplay();
+		//	break;
+		//case 'H':
+		//	glutPostRedisplay();
+		//	break;
+		//case 'q':
+		//	camera.MovePosition(0, 1, 0);
+		//	glutPostRedisplay();
+		//	break;
+		//case 'Q':
+		//	camera.MovePosition(0, 1, 0);
+		//	glutPostRedisplay();
+		//	break;
+		//case '1':
+		//	camera.ChangeCamera(0);
+		//	break;
+		//case '2':
+		//	camera.ChangeCamera(1);
+		//	break;
+		//case '3':
+		//	camera.ChangeCamera(2);
+		//	break;
+		//case '4':
+		//	camera.ChangeCamera(3);
+		//	break;
 	case 27:
 		exit(0);
 		break;
@@ -185,7 +209,7 @@ void myMouseMotion(int x, int y)
 	int		xdis, ydis;
 	double	a = 0.5;
 
-	if (mouseFlag == GL_FALSE) return;
+	//if (mouseFlag == GL_FALSE) return;
 	xdis = x - xStart;
 	ydis = y - yStart;
 	/* To match mouse's movement and its rotation axis */
@@ -199,34 +223,52 @@ void myMouseMotion(int x, int y)
 
 void myMouseFunc(int button, int state, int x, int y)
 {
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+	//if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 		xStart = x;
 		yStart = y;
 		mouseFlag = GL_TRUE;
-	}
-	else {
+	//}
+	//else {
 		mouseFlag = GL_FALSE;
-	}
+	//}
 }
 
 void mySetLight()
 {
-	float light0_position[] = { 1.0,  1.0, 1.0, 1.0 };	// point light source
-	float light1_position[] = { -1.0, -1.0, 1.0, 1.0 };	// point light source
-	float light1_ambient[] = { 0.0, 1.0, 0.0, 1.0 };
-	float light1_diffuse[] = { 0.0, 1.0, 0.0, 1.0 };
-	float light1_specular[] = { 0.0, 1.0, 0.0, 1.0 };
-
-	/* Set up LIGHT0 which uses the default parameters except position */
+	/* LIGHT0:太陽光 */
+	float light0_position[] = { 0,  100.0, 0, 0 };
+	float light0_ambient[] = { 1.0, 1.0, 0.95, 1.0 };
 	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
-	/* Set up LIGHT1 */
-	glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
+	glLightfv(GL_LIGHT0, GL_AMBIENT, light0_ambient);
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT,light0_ambient);
+
+	float light1_position[] = { -1.0, -1.0, 1.0, 1.0 };	// point light source
+	float light1_ambient[] = { 0, 0, 0.0, 1.0 };
+	float light1_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
+	float light1_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+
+	/*glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
 	glLightfv(GL_LIGHT1, GL_AMBIENT, light1_ambient);
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, light1_diffuse);
-	glLightfv(GL_LIGHT1, GL_SPECULAR, light1_specular);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, light1_specular);*/
 
 	glEnable(GL_LIGHT0);		// enable the 0th light
-	glEnable(GL_LIGHT1);		// enable the 1st light
+	//glEnable(GL_LIGHT1);		// enable the 1st light
+}
+
+void InitTexture()
+{
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+	/* automatic mapping */
+	glTexGenf(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+	glTexGenf(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+	glEnable(GL_TEXTURE_GEN_S);
+	glEnable(GL_TEXTURE_GEN_T);
 }
 
 int main(int argc, char** argv)
@@ -237,6 +279,8 @@ int main(int argc, char** argv)
 	myInit(argv[0]);
 	// ライトの設定
 	mySetLight();
+	// テクスチャマッピングの初期設定
+	InitTexture();
 	// 
 	glutReshapeFunc(myReshape);
 	// キーボード、マウス入力のコールバック関数セット
@@ -248,6 +292,10 @@ int main(int argc, char** argv)
 	glutIdleFunc(myIdle);
 	// 描画用関数(ディスプレイコールバック関数)セット
 	glutDisplayFunc(myDisplay);
+	
+	player.AddComponent<Player>();
+	pTransform = player.GetComponent<Transform>();
+	playerPos = pTransform->GetPosition();
 
 	fps.SetFPS(60);
 	// イベント処理ループ

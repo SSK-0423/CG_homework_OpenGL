@@ -43,9 +43,11 @@ void SpyderLeg::Draw(float x, float y, float z, int num) {
 						glPushMatrix();
 						{
 							glColor3d(0.5, 0.4, 0);
+							//glMaterialfv(GL_FRONT, GL_AMBIENT, mtr[1]);
 							glScaled(2, 1, 0.5);
 							glutSolidCube(1);
 							glColor3d(0.5, 0.25, 0);
+							//glMaterialfv(GL_FRONT, GL_AMBIENT, mtr[0]);
 						}
 						glPopMatrix();
 					}
@@ -87,9 +89,11 @@ void SpyderLeg::Draw(float x, float y, float z, int num) {
 						glPushMatrix();
 						{
 							glColor3d(0.5, 0.4, 0);
+							//glMaterialfv(GL_FRONT, GL_AMBIENT, mtr[1]);
 							glScaled(2, 1, 0.5);
 							glutSolidCube(1);
 							glColor3d(0.5, 0.25, 0);
+							//glMaterialfv(GL_FRONT, GL_AMBIENT, mtr[0]);
 						}
 						glPopMatrix();
 					}

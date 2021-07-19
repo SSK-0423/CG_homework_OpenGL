@@ -1,11 +1,11 @@
 #include "Floor.h"
 #include "GameData.h"
-#include "Transform.hpp"
 
 Texture* Floor::texture;
 
-Floor::Floor() {
-	texture = new Texture("textures/texture1.ppm");
+Floor::Floor(const char* filepath) {
+	texture = new Texture(filepath);
+	parentTransform = nullptr;
 }
 
 Floor::~Floor() {
@@ -17,17 +17,26 @@ void Floor::Update() {
 }
 
 void Floor::Draw() {
+	if (parentTransform == nullptr)
+		parentTransform = parent->GetComponent<Transform>();
+
 	texture->SetTexture();
 	glEnable(GL_TEXTURE_2D);
 	glPushMatrix();
 	{
 		Position3D<float> position;
 		Size3D<float> size;
-		position = parent->GetComponent<Transform>()->GetPosition();
-		size = parent->GetComponent<Transform>()->GetSize();
-		glTranslated(position.x, position.y, position.z);
-		glScaled(size.width, size.height, size.depth);
-		glutSolidCube(1);
+		position = parentTransform->GetPosition();
+		size = parentTransform->GetSize();
+		glRotated(90, 1.0, 0.0, 0.0);
+		glBegin(GL_QUADS);
+		{
+			glVertex3d(size.width / 2, -size.depth / 2, 0);
+			glVertex3d(size.width / 2, size.depth / 2, 0);
+			glVertex3d(-size.width / 2, size.depth / 2, 0);
+			glVertex3d(-size.width / 2, -size.depth / 2, 0);
+		}
+		glEnd();
 	}
 	glPopMatrix();
 	glDisable(GL_TEXTURE_2D);

@@ -34,10 +34,18 @@ void SpyderHead::DrawTactile(float x, float y, float z)
 	glPopMatrix();
 }
 
+SpyderHead::SpyderHead()
+{
+	eyeTexture = new Texture("textures/spyderEye.ppm");
+}
+
 void SpyderHead::Draw(float x, float y, float z) {
+	glEnable(GL_TEXTURE_2D);
 	glPushMatrix();
 	{
-		glColor3d(1, 0, 0);			//ê‘
+		eyeTexture->SetTexture();
+		//glColor3d(1, 0, 0);			//ê‘
+		//glMaterialfv(GL_FRONT, GL_AMBIENT, mtr[0]);
 		glTranslated(x, y, z);
 		// ñ⁄
 		DrawEye(-1.5, 0.5, -0.4, 0.4, 20, 20);
@@ -54,6 +62,7 @@ void SpyderHead::Draw(float x, float y, float z) {
 		glutSolidCube(1);
 	}
 	glPopMatrix();
+	glDisable(GL_TEXTURE_2D);
 }
 void SpyderHead::Animation() {
 

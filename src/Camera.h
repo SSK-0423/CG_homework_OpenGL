@@ -1,10 +1,11 @@
 #pragma once
-#include "Vector3D.h"
+#include "GameData.h"
+
 class Camera {
 private:
 	// カメラ座標
-	Vector3D position;
-	Vector3D viewPosition;
+	Position3D<float> position;
+	Position3D<float> viewPosition;
 	int cameraType;
 	int angle;
 public:
@@ -14,7 +15,9 @@ public:
 	// カメラの移動
 	void MovePosition(float x, float y, float z);
 	void SetPosition(float x, float y, float z);
+	void SetPosition(Position3D<float> pos);
 	void SetViewPosition(float x, float y, float z);
+	void SetViewPosition(Position3D<float> pos);
 	// カメラの回転
 	void Rotate(int angle);
 	// カメラ変更

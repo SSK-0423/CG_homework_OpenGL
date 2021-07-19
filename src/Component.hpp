@@ -13,10 +13,10 @@ public:
 	}
 	virtual ~Component() {
 	}
-	virtual void Update() = 0;
-	virtual void Draw() = 0;
+	virtual void Update() {};
+	virtual void Draw() {};
 
-	void SetParentObject(Object& obj) {
+	virtual void SetParentObject(Object& obj) {
 		parent = &obj;
 	}
 };

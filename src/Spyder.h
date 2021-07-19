@@ -6,6 +6,7 @@
 #include "FrontLegAnimator.h"
 #include "MiddleLegAnimator.h"
 #include "HindLegAnimator.h"
+#include "Texture.h"
 #include <vector>
 
 class Spyder {
@@ -25,10 +26,13 @@ private:
 	//尾
 	SpyderTale tale;
 	//移動用
-	std::vector<int> z = { 0,-30, -30, 0,30,30,  30,  0, 0};
-	std::vector<int> x = { 0,  0,  30,30,30, 0, -30,-30, 0};
+	std::vector<int> z = { 0,-30, -30, 0,30,30,  30,  0, 0 };
+	std::vector<int> x = { 0,  0,  30,30,30, 0, -30,-30, 0 };
 	std::vector<float> xLerp;
 	std::vector<float> zLerp;
+
+	float mtr[4] = { 0.5, 0.25, 0.0, 1.0 };
+	Texture* bodyTexture;
 	// アニメーションの設定
 	void InitAnimation();
 	// クモの移動アニメーション

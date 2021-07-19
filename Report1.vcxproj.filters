@@ -28,6 +28,9 @@
     <Filter Include="ヘッダー ファイル\Game\Components">
       <UniqueIdentifier>{d8cfccd3-ab14-4456-aa57-4a7785468879}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Object\Spyder">
+      <UniqueIdentifier>{65c26b1b-78b0-4b69-9444-1782c65a742b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -78,17 +81,23 @@
     <ClCompile Include="src\Building.cpp">
       <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
-    <ClCompile Include="src\SkyBox.cpp">
-      <Filter>ソース ファイル\Object</Filter>
-    </ClCompile>
     <ClCompile Include="src\Floor.cpp">
       <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
+    <ClCompile Include="src\SkyBox.cpp">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Player.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ICharacter.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Material.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Spyder.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\Camera.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -99,15 +108,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\BodyPart.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\SpyderHead.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\SpyderLeg.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\SpyderTale.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\Animator.h">
@@ -194,11 +194,26 @@
     <ClInclude Include="src\Building.h">
       <Filter>ヘッダー ファイル\Game\Object</Filter>
     </ClInclude>
+    <ClInclude Include="src\Floor.h">
+      <Filter>ヘッダー ファイル\Game\Object</Filter>
+    </ClInclude>
     <ClInclude Include="src\SkyBox.h">
       <Filter>ヘッダー ファイル\Game\Object</Filter>
     </ClInclude>
-    <ClInclude Include="src\Floor.h">
-      <Filter>ヘッダー ファイル\Game\Object</Filter>
+    <ClInclude Include="src\Spyder.h">
+      <Filter>ヘッダー ファイル\Game\Object\Spyder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SpyderHead.h">
+      <Filter>ヘッダー ファイル\Game\Object\Spyder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SpyderLeg.h">
+      <Filter>ヘッダー ファイル\Game\Object\Spyder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SpyderTale.h">
+      <Filter>ヘッダー ファイル\Game\Object\Spyder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Material.h">
+      <Filter>ヘッダー ファイル\Game\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
