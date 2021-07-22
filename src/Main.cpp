@@ -15,11 +15,10 @@
 #define WINDOW_WIDTH 500
 #define WINDOW_HEIGHT 500
 
-static Camera camera;
-static Workspace workspace;
 static Spyder spyder;
 static Stage stage;
 static GameObject player;
+static GameObject playerModel; 
 static FPS fps;
 static Transform* pTransform;
 static GameObject* obj;
@@ -33,10 +32,12 @@ float initMtr[4] = { 1.0,1.0,1.0,0.0 };
 static MaterialParam sun = {
 	{1.0,1.0,0.0,1.0},
 	{1.0,1.0,0.0,1.0},
-	{1.0,1.0,0.0,1.0},
-	{1.0,1.0,0.0,1.0},
+	{1.0,1.0,1.0,1.0},
+	{0.8,0.8,0.8,1.0},
 	128
 };
+
+static GLdouble normal[3] = { 0.0,1.0,0.0 };
 
 // 初期化処理をまとめた関数
 void myInit(char* progname)
@@ -50,7 +51,7 @@ void myInit(char* progname)
 	glutInitWindowPosition(0, 0);
 	// ウィンドウ生成 progname = ウィンドウネーム
 	glutCreateWindow(progname);
-	glShadeModel(GL_FLAT);
+	glShadeModel(GL_SMOOTH);
 	// 初期色(?)
 	//glClearColor(0.0, 0.0, 0.0, 0.0);
 	glClearColor(0.0, 0.85, 1.0, 1.0);
@@ -67,24 +68,24 @@ void myDisplay(void)
 	{
 		glPushMatrix();
 		{
-			glMaterialfv(GL_FRONT, GL_AMBIENT, initMtr);
-			player.GetComponent<Transform>()->SetRotateAngle(0,yAngle,0);
+			player.GetComponent<Transform>()->SetRotateAngle(0, yAngle, 0);
 			player.Draw();
+			playerModel.Draw();
 			glMaterialfv(GL_FRONT, GL_AMBIENT, initMtr);
 			spyder.Animation();
 			spyder.Draw();
-			//workspace.Draw();
 			glMaterialfv(GL_FRONT, GL_AMBIENT, initMtr);
 			stage.Draw();
 			//obj->Draw();
 			//obj2->Draw();
 		}
-		glMaterialfv(GL_FRONT, GL_AMBIENT, sun.ambient);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, sun.diffuse);
-		glMaterialfv(GL_FRONT, GL_SPECULAR, sun.specular);
-		glMaterialfv(GL_FRONT, GL_EMISSION, sun.emission);
-		glMaterialfv(GL_FRONT, GL_SHININESS, &sun.shininess);
-		glutSolidSphere(4, 10, 10);
+		//glMaterialfv(GL_FRONT, GL_AMBIENT, sun.ambient);
+		//glMaterialfv(GL_FRONT, GL_DIFFUSE, sun.diffuse);
+		//glMaterialfv(GL_FRONT, GL_SPECULAR, sun.specular);
+		//glMaterialfv(GL_FRONT, GL_EMISSION, sun.emission);
+		//glMaterialfv(GL_FRONT, GL_SHININESS, &sun.shininess);
+		//glNormal3dv(normal);
+		//glutSolidSphere(4, 10, 10);
 		glPopMatrix();
 	}
 	glPopMatrix();
@@ -122,7 +123,7 @@ void myReshape(int width, int height)
 void myKeyboard(unsigned char key, int x, int y)
 {
 	Position3D<float> position;
-	position = player.GetComponent<Transform>()->GetPosition();
+	//position = player.GetComponent<Transform>()->GetPosition();
 	switch (key) {
 	case 'w':
 		player.GetComponent<Player>()->MoveForward(1);
@@ -153,25 +154,25 @@ void myKeyboard(unsigned char key, int x, int y)
 		glutPostRedisplay();
 		break;
 	case 'e':
-		player.GetComponent<Transform>()->AddRotateAngle(0, 1, 0);
+		player.GetComponent<Player>()->MoveUP(0.5);
 		glutPostRedisplay();
 		break;
 	case 'E':
-		player.GetComponent<Transform>()->AddRotateAngle(0, 1, 0);
+		player.GetComponent<Player>()->MoveUP(0.5);
+		glutPostRedisplay();
+		break;
+	case 'q':
+		player.GetComponent<Player>()->MoveUP(-0.5);
+		glutPostRedisplay();
+		break;
+	case 'Q':
+		player.GetComponent<Player>()->MoveUP(-0.5);
 		glutPostRedisplay();
 		break;
 		//case 'h':
 		//	glutPostRedisplay();
 		//	break;
 		//case 'H':
-		//	glutPostRedisplay();
-		//	break;
-		//case 'q':
-		//	camera.MovePosition(0, 1, 0);
-		//	glutPostRedisplay();
-		//	break;
-		//case 'Q':
-		//	camera.MovePosition(0, 1, 0);
 		//	glutPostRedisplay();
 		//	break;
 		//case '1':
@@ -224,12 +225,12 @@ void myMouseMotion(int x, int y)
 void myMouseFunc(int button, int state, int x, int y)
 {
 	//if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-		xStart = x;
-		yStart = y;
-		mouseFlag = GL_TRUE;
+	xStart = x;
+	yStart = y;
+	mouseFlag = GL_TRUE;
 	//}
 	//else {
-		mouseFlag = GL_FALSE;
+	mouseFlag = GL_FALSE;
 	//}
 }
 
@@ -237,20 +238,20 @@ void mySetLight()
 {
 	/* LIGHT0:太陽光 */
 	float light0_position[] = { 0,  100.0, 0, 0 };
-	float light0_ambient[] = { 1.0, 1.0, 0.95, 1.0 };
+	float light0_ambient[] = { 0.8, 0.8, 0.75, 0.0 };
 	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light0_ambient);
-	glLightModelfv(GL_LIGHT_MODEL_AMBIENT,light0_ambient);
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, light0_ambient);
 
 	float light1_position[] = { -1.0, -1.0, 1.0, 1.0 };	// point light source
 	float light1_ambient[] = { 0, 0, 0.0, 1.0 };
 	float light1_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
 	float light1_specular[] = { 1.0, 1.0, 1.0, 1.0 };
 
-	/*glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
+	glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
 	glLightfv(GL_LIGHT1, GL_AMBIENT, light1_ambient);
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, light1_diffuse);
-	glLightfv(GL_LIGHT1, GL_SPECULAR, light1_specular);*/
+	glLightfv(GL_LIGHT1, GL_SPECULAR, light1_specular);
 
 	glEnable(GL_LIGHT0);		// enable the 0th light
 	//glEnable(GL_LIGHT1);		// enable the 1st light
@@ -271,6 +272,28 @@ void InitTexture()
 	glEnable(GL_TEXTURE_GEN_T);
 }
 
+void Menu(int value) {
+	switch (value)
+	{
+	case 1:
+		printf("value:%d\n", value);
+		break;
+	case 2:
+		printf("value:%d\n", value);
+		exit(0);
+		break;
+	default:
+		break;
+	}
+}
+
+void mySetMenu()
+{
+	glutCreateMenu(Menu);
+	glutAddMenuEntry("Test1", 1);
+	glutAddMenuEntry("GameEnd", 2);
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
+}
 int main(int argc, char** argv)
 {
 	// gultライブラリの初期化
@@ -292,11 +315,11 @@ int main(int argc, char** argv)
 	glutIdleFunc(myIdle);
 	// 描画用関数(ディスプレイコールバック関数)セット
 	glutDisplayFunc(myDisplay);
-	
-	player.AddComponent<Player>();
+	mySetMenu();
+	player.AddComponent<Player>(true);
 	pTransform = player.GetComponent<Transform>();
 	playerPos = pTransform->GetPosition();
-
+	playerModel.AddComponent<Player>(false);
 	fps.SetFPS(60);
 	// イベント処理ループ
 	glutMainLoop();

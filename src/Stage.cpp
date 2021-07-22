@@ -41,9 +41,11 @@ Stage::~Stage() {
 	for (auto obj : floorObjList) {
 		delete obj;
 	}
+	printf("floorObjListDelete\n");
 	for (auto obj : buildingObjList) {
 		delete obj;
 	}
+	printf("buildingObjListDelete\n");
 	floorObjList.clear();
 	buildingObjList.clear();
 }

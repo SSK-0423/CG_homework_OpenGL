@@ -1,6 +1,6 @@
 #pragma once
 #include "GameData.h"
-
+#include <stdio.h>
 class Transform : public Component {
 private:
 	Position3D<float> position;
@@ -16,9 +16,11 @@ public:
 		size.height = 1.0;
 		size.depth = 1.0;
 		angle.x = angle.y = angle.z = 0;
-	};
+	}
 
-	~Transform() {};
+	~Transform() {
+		printf("Transform\n");
+	}
 
 	Position3D<float> GetPosition() {
 		return position;
@@ -52,6 +54,7 @@ public:
 		angle.x = x;
 		angle.y = y;
 		angle.z = z;
+		//printf("x:%f,y:%f,z:%f\n", x, y, z);
 	}
 	void AddRotateAngle(const float& x, const float& y, const float& z) {
 		angle.x += x;
@@ -60,4 +63,7 @@ public:
 	}
 	void Update() {}
 	void Draw() {}
+	void GetComponentName() {
+		printf("Transform\n");
+	}
 };

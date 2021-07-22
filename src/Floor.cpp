@@ -10,6 +10,7 @@ Floor::Floor(const char* filepath) {
 
 Floor::~Floor() {
 	delete texture;
+	delete parentTransform;
 }
 
 void Floor::Update() {

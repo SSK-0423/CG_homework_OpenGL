@@ -5,10 +5,11 @@
 class GameObject : public Object {
 protected:
 	//ç¿ïW
-	Transform transform;
+	Transform* transform;
 public:
 	GameObject() {
-		componentList.push_back(&transform);
+		transform = new Transform();
+		componentList.push_back(transform);
 	}
 	virtual ~GameObject() {
 	}

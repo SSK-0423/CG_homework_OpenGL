@@ -15,7 +15,7 @@ public:
 	}
 	virtual void Update() {};
 	virtual void Draw() {};
-
+	virtual void GetComponentName() {};
 	virtual void SetParentObject(Object& obj) {
 		parent = &obj;
 	}

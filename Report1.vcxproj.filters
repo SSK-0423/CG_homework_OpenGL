@@ -31,14 +31,20 @@
     <Filter Include="ヘッダー ファイル\Game\Object\Spyder">
       <UniqueIdentifier>{65c26b1b-78b0-4b69-9444-1782c65a742b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Object\Plyaer">
+      <UniqueIdentifier>{5598055e-7ff5-4c9d-9078-635dcffc0770}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Player">
+      <UniqueIdentifier>{8a9680db-fb8f-46a0-a96f-4d3c7fc042bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Spyder">
+      <UniqueIdentifier>{7735d9bb-67ce-41e8-8565-9c6d95b5c64f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Spyder.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="src\Camera.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -46,15 +52,6 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="src\Workspace.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SpyderHead.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SpyderTale.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SpyderLeg.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="src\FrontLegAnimator.cpp">
@@ -87,14 +84,38 @@
     <ClCompile Include="src\SkyBox.cpp">
       <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
-    <ClCompile Include="src\Player.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="src\ICharacter.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="src\Material.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Player.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayerArm.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayerHead.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayerLeg.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayerWaist.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Spyder.cpp">
+      <Filter>ソース ファイル\Spyder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpyderHead.cpp">
+      <Filter>ソース ファイル\Spyder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpyderLeg.cpp">
+      <Filter>ソース ファイル\Spyder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpyderTale.cpp">
+      <Filter>ソース ファイル\Spyder</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -155,9 +176,6 @@
     <ClInclude Include="src\Enemy.h">
       <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
     </ClInclude>
-    <ClInclude Include="src\Player.h">
-      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
-    </ClInclude>
     <ClInclude Include="src\IWeapon.h">
       <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
     </ClInclude>
@@ -214,6 +232,21 @@
     </ClInclude>
     <ClInclude Include="src\Material.h">
       <Filter>ヘッダー ファイル\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player.h">
+      <Filter>ヘッダー ファイル\Game\Object\Plyaer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PlayerArm.h">
+      <Filter>ヘッダー ファイル\Game\Object\Plyaer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PlayerHead.h">
+      <Filter>ヘッダー ファイル\Game\Object\Plyaer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PlayerLeg.h">
+      <Filter>ヘッダー ファイル\Game\Object\Plyaer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PlayerWaist.h">
+      <Filter>ヘッダー ファイル\Game\Object\Plyaer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
