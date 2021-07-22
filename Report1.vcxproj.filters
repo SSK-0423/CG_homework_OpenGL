@@ -40,6 +40,12 @@
     <Filter Include="ソース ファイル\Spyder">
       <UniqueIdentifier>{7735d9bb-67ce-41e8-8565-9c6d95b5c64f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\CubicSpline">
+      <UniqueIdentifier>{8b9b90be-da02-49bd-8632-79d38c15e610}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\CubicSpline">
+      <UniqueIdentifier>{8a8a6da9-0c42-43b2-b51c-cc6821f8b11c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -116,6 +122,18 @@
     </ClCompile>
     <ClCompile Include="src\SpyderTale.cpp">
       <Filter>ソース ファイル\Spyder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CubicSpline.cpp">
+      <Filter>ソース ファイル\CubicSpline</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EquationsSolver.cpp">
+      <Filter>ソース ファイル\CubicSpline</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GaussElimination.cpp">
+      <Filter>ソース ファイル\CubicSpline</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LUdecomposition.cpp">
+      <Filter>ソース ファイル\CubicSpline</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +265,18 @@
     </ClInclude>
     <ClInclude Include="src\PlayerWaist.h">
       <Filter>ヘッダー ファイル\Game\Object\Plyaer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CubicSpline.hpp">
+      <Filter>ヘッダー ファイル\CubicSpline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EquationsSolver.hpp">
+      <Filter>ヘッダー ファイル\CubicSpline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GaussElimination.hpp">
+      <Filter>ヘッダー ファイル\CubicSpline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LUdecomposition.hpp">
+      <Filter>ヘッダー ファイル\CubicSpline</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

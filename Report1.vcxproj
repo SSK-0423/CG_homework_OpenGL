@@ -144,12 +144,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Building.cpp" />
+    <ClCompile Include="src\CubicSpline.cpp" />
     <ClCompile Include="src\Debug.cpp" />
+    <ClCompile Include="src\EquationsSolver.cpp" />
     <ClCompile Include="src\Floor.cpp" />
     <ClCompile Include="src\FrontLegAnimator.cpp" />
+    <ClCompile Include="src\GaussElimination.cpp" />
     <ClCompile Include="src\HindLegAnimator.cpp" />
     <ClCompile Include="src\ICharacter.cpp" />
     <ClCompile Include="src\Lerp.cpp" />
+    <ClCompile Include="src\LUdecomposition.cpp" />
     <ClCompile Include="src\Material.cpp" />
     <ClCompile Include="src\MiddleLegAnimator.cpp" />
     <ClCompile Include="src\Player.cpp" />
@@ -178,19 +182,23 @@
     <ClInclude Include="src\ColliderCube.h" />
     <ClInclude Include="src\Component.hpp" />
     <ClInclude Include="src\ComponentSystem.hpp" />
+    <ClInclude Include="src\CubicSpline.hpp" />
     <ClInclude Include="src\Debug.h" />
     <ClInclude Include="src\Enemy.h" />
+    <ClInclude Include="src\EquationsSolver.hpp" />
     <ClInclude Include="src\Floor.h" />
     <ClInclude Include="src\FPS.h" />
     <ClInclude Include="src\FrontLegAnimator.h" />
     <ClInclude Include="src\Game.hpp" />
     <ClInclude Include="src\GameData.h" />
     <ClInclude Include="src\GameObject.hpp" />
+    <ClInclude Include="src\GaussElimination.hpp" />
     <ClInclude Include="src\ICharacter.h" />
     <ClInclude Include="src\ICollider.h" />
     <ClInclude Include="src\IWeapon.h" />
     <ClInclude Include="src\LegAnimator.h" />
     <ClInclude Include="src\Lerp.h" />
+    <ClInclude Include="src\LUdecomposition.hpp" />
     <ClInclude Include="src\Material.h" />
     <ClInclude Include="src\MiddleLegAnimator.h" />
     <ClInclude Include="src\Object.hpp" />
