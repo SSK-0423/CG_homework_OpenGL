@@ -72,8 +72,8 @@ void myDisplay(void)
 			player.Draw();
 			playerModel.Draw();
 			glMaterialfv(GL_FRONT, GL_AMBIENT, initMtr);
-			spyder.Animation();
-			spyder.Draw();
+			//spyder.Animation();
+			//spyder.Draw();
 			glMaterialfv(GL_FRONT, GL_AMBIENT, initMtr);
 			stage.Draw();
 			//obj->Draw();
@@ -148,9 +148,14 @@ void myKeyboard(unsigned char key, int x, int y)
 		glutPostRedisplay();
 		break;
 	case 'a':
+		//playerModel.GetComponent<Player>()->Animation();
+		playerModel.GetComponent<Player>()->animeState += 1;
+		playerModel.GetComponent<Player>()->DrawAnimeState();
 		glutPostRedisplay();
 		break;
 	case 'A':
+		//playerModel.GetComponent<Player>()->Animation();
+		playerModel.GetComponent<Player>()->animeState += 1;
 		glutPostRedisplay();
 		break;
 	case 'e':
@@ -169,12 +174,30 @@ void myKeyboard(unsigned char key, int x, int y)
 		player.GetComponent<Player>()->MoveUP(-0.5);
 		glutPostRedisplay();
 		break;
-		//case 'h':
-		//	glutPostRedisplay();
-		//	break;
-		//case 'H':
-		//	glutPostRedisplay();
-		//	break;
+	case 'z':
+		playerModel.GetComponent<Player>()->LegRotate(1, 1);
+		glutPostRedisplay();
+		break;
+	case 'Z':
+		playerModel.GetComponent<Player>()->LegRotate(1, 1);
+		glutPostRedisplay();
+		break;
+	case 'x':
+		playerModel.GetComponent<Player>()->LegRotate(1, 2);
+		glutPostRedisplay();
+		break;
+	case 'X':
+		playerModel.GetComponent<Player>()->LegRotate(1, 2);
+		glutPostRedisplay();
+		break;
+	case 'c':
+		playerModel.GetComponent<Player>()->LegRotate(1, 3);
+		glutPostRedisplay();
+		break;
+	case 'C':
+		playerModel.GetComponent<Player>()->LegRotate(1, 3);
+		glutPostRedisplay();
+		break;
 		//case '1':
 		//	camera.ChangeCamera(0);
 		//	break;

@@ -58,7 +58,7 @@ int GaussEliminationWithPivoting(vector<vector<double>> &a, double x[],int n) {
 	}
 
 	for (int i = 0; i < n; i++) {
-		cout << "x["<< i << "]= " << x[i] << "\n";
+		//cout << "x["<< i << "]= " << x[i] << "\n";
 	}
 
 	return 1;
@@ -90,7 +90,7 @@ int GaussEliminationWithPivoting(vector<vector<double>>& a, double x[], int n,co
 	}
 
 	for (int i = 0; i <= n+1; i++) {
-		cout << "x[" << i << "]= " << x[i] << "\n";
+		//cout << "x[" << i << "]= " << x[i] << "\n";
 	}
 
 	return 1;

@@ -28,23 +28,12 @@ void Player::DrawLocalAxis()
 	glEnd();
 }
 
-// プレイヤーのモデル描画
-void Player::DrawPlayer()
+
+void Player::MakeLerpList(std::vector<double>& list)
 {
-	ChangeObjectSize(2);
-	glPushMatrix();
-	{
-		head.Draw(0, 4.575 + 0.5, 0);
-		armLeft.Draw(1, 4.175, 0);
-		armRight.Draw(-1, 4.175, 0);
-		waist.Draw(0, 2.325, 0);
-		legLeft.Draw(0.5, 0, 0);
-		legRight.Draw(-0.5, 0, 0);
+	for (int i = 0; i < 80; i++) {
+		list.push_back(cubicSpline.interpolation(i, false));
 	}
-	glPopMatrix();
-	glTranslated(0, (2.325 + 1 + 0.25) * size, 0);
-	glScaled(1.5 * size, 2 * size, 0.5 * size);
-	glutWireCube(1);
 }
 
 Player::Player(bool b)
@@ -53,6 +42,10 @@ Player::Player(bool b)
 	objSize.depth = objSize.height = objSize.width = 2;
 	size = 1;
 	myPlayer = b;
+	frameCount = 0;
+	animeState = 0;
+	cubicSpline.cubicSpline(playerY, playerY.size());
+	MakeLerpList(yLerp);
 }
 
 Player::~Player()
@@ -76,9 +69,10 @@ void Player::Draw()
 	forward.y = 1 * sin(rotateAngle.x * PI / 180.0);
 	forward.z = 1 * cos(rotateAngle.y * PI / 180.0);
 
+	Animation();
 	if (myPlayer) {
-		//camera.SetPosition(position.x - forward.x * 10, position.y + 5, position.z - forward.z * 10);
-		//camera.SetViewPosition(position.x + forward.x * 10, position.y + 5, position.z + forward.z * 10);
+		//camera.SetPosition(position.x - forward.x * 3, position.y + 3, position.z - forward.z * 3);
+		//camera.SetViewPosition(position.x + forward.x * 10, position.y + 3, position.z + forward.z * 10);
 		camera.SetPosition(position.x - forward.x * 1, position.y + 2, position.z - forward.z * 1);
 		camera.SetViewPosition(position.x + forward.x * 10, position.y + 2, position.z + forward.z * 10);
 		camera.Draw();
@@ -97,10 +91,70 @@ void Player::Draw()
 	}
 }
 
+// プレイヤーのモデル描画
+void Player::DrawPlayer()
+{
+	ChangeObjectSize(1);
+	//switch (animeState)
+	//{
+	//case 0:
+	//	down = -0.2;
+	//	break;
+	//case 1:
+	//	down = -0.2;
+	//	break;
+	//case 2:
+	//	down = -0.125;
+	//	break;
+	//case 3:
+	//	down = 0;
+	//	break;
+	//case 4:
+	//	down = -0.2;
+	//	break;
+	//case 5:
+	//	down = -0.2;
+	//	break;
+	//case 6:
+	//	down = -0.125;
+	//	break;
+	//case 7:
+	//	down = 0;
+	//	break;
+	//default:
+	//	break;
+	//}
+	glTranslated(0, down, 0);
+	glPushMatrix();
+	{
+		head.Draw(0, 4 - 0.25, 0);
+		armLeft.Draw(1, 3.5 - 0.5 - 0.0625, 0);
+		armRight.Draw(-1, 3.5 - 0.5 - 0.0625, 0);
+		waist.Draw(0, 2.325 - 0.75, 0);
+		legLeft.Draw(0.5, 2.325 - 0.75 - 0.75, 0, true, animeState);
+		legRight.Draw(-0.5, 2.325 - 0.75 - 0.75, 0, false, animeState);
+	}
+	glPopMatrix();
+	glTranslated(0, (2.325 + 1 + 0.25 - 0.75 - 0.5) * size, 0);
+	glScaled(1.5 * size, 2 * size, 0.5 * size);
+	glutWireCube(1);
+}
+
 void Player::SetParentObject(Object& obj)
 {
 	parent = &obj;
 	transform = parent->GetComponent<Transform>();
+}
+
+void Player::Animation()
+{
+	if (frameCount >= 80) {
+		frameCount = 0;
+	}
+	down = yLerp[frameCount];
+	frameCount++;
+	legLeft.Animation(true);
+	legRight.Animation(false);
 }
 
 void Player::MoveForward(float dist)
@@ -160,4 +214,45 @@ void Player::ChangeObjectSize(int value)
 	waist.ChangeObjSize(size);
 	legRight.ChangeObjSize(size);
 	legLeft.ChangeObjSize(size);
+}
+
+// 回転テスト
+void Player::LegRotate(float value, int num)
+{
+	legRight.AddAngle(value, num);
+	legLeft.AddAngle(value, num);
+}
+
+void Player::DrawAnimeState()
+{
+	animeState %= 8;
+	switch (animeState)
+	{
+	case 0:
+		printf("animeState:%d コンタクト\n", animeState);
+		break;
+	case 1:
+		printf("animeState:%d ダウン\n", animeState);
+		break;
+	case 2:
+		printf("animeState:%d パッシング\n", animeState);
+		break;
+	case 3:
+		printf("animeState:%d アップ\n", animeState);
+		break;
+	case 4:
+		printf("animeState:%d コンタクト\n", animeState);
+		break;
+	case 5:
+		printf("animeState:%d ダウン\n", animeState);
+		break;
+	case 6:
+		printf("animeState:%d パッシング\n", animeState);
+		break;
+	case 7:
+		printf("animeState:%d アップ\n", animeState);
+		break;
+	default:
+		break;
+	}
 }

@@ -135,6 +135,9 @@
     <ClCompile Include="src\LUdecomposition.cpp">
       <Filter>ソース ファイル\CubicSpline</Filter>
     </ClCompile>
+    <ClCompile Include="src\PlayerLegAnimator.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Camera.h">
@@ -152,22 +155,10 @@
     <ClInclude Include="src\Animator.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\FrontLegAnimator.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MiddleLegAnimator.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\Lerp.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\Debug.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\LegAnimator.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\HindLegAnimator.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\Stage.h">
@@ -277,6 +268,21 @@
     </ClInclude>
     <ClInclude Include="src\LUdecomposition.hpp">
       <Filter>ヘッダー ファイル\CubicSpline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LegAnimator.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FrontLegAnimator.h">
+      <Filter>ヘッダー ファイル\Game\Object\Spyder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HindLegAnimator.h">
+      <Filter>ヘッダー ファイル\Game\Object\Spyder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MiddleLegAnimator.h">
+      <Filter>ヘッダー ファイル\Game\Object\Spyder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PlayerLegAnimator.h">
+      <Filter>ヘッダー ファイル\Game\Object\Plyaer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

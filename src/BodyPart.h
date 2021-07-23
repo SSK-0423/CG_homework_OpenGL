@@ -6,13 +6,13 @@ class BodyPart {
 private:
 	Vector3D position;
 protected:
-	int size;
+	float size;
 public:
 	BodyPart() { size = 1; }
 	virtual void Draw(T... t) = 0;
 	virtual void Animation() = 0;
 	virtual void SetPosition(float x, float y, float z) = 0;
-	void ChangeObjSize(int value) {
+	void ChangeObjSize(float value) {
 		size = value;
 	}
 };

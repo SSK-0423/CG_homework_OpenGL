@@ -160,6 +160,7 @@
     <ClCompile Include="src\PlayerArm.cpp" />
     <ClCompile Include="src\PlayerHead.cpp" />
     <ClCompile Include="src\PlayerLeg.cpp" />
+    <ClCompile Include="src\PlayerLegAnimator.cpp" />
     <ClCompile Include="src\PlayerWaist.cpp" />
     <ClCompile Include="src\Spyder.cpp" />
     <ClCompile Include="src\Camera.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="src\PlayerArm.h" />
     <ClInclude Include="src\PlayerHead.h" />
     <ClInclude Include="src\PlayerLeg.h" />
+    <ClInclude Include="src\PlayerLegAnimator.h" />
     <ClInclude Include="src\PlayerWaist.h" />
     <ClInclude Include="src\SkyBox.h" />
     <ClInclude Include="src\Spyder.h" />

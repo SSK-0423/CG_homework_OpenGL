@@ -17,7 +17,7 @@ class CubicSpline {
 		vector<vector<double>> A;
 
 		vector<vector<double>> keisu; //keisu[n][4]
-
+		void InitVector();	// vector‰Šú‰»
 		void calc_v();//v‚ÌŒvZ
 		void calc_h();//h‚ÌŒvZ
 		void make_array(vector<double> h);//”z—ñì¬

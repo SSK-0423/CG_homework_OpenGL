@@ -7,12 +7,12 @@ using namespace std;
 double CubicSpline::interpolation(double p,bool inverse) {
 	int inv = 0;
 	if (inverse) inv = 1;
-	printf("x = %lf\n",p);
+	//printf("x = %lf\n",p);
 	//点の数=N+1
 	for (int i = 0; i < N; i++) {
-		printf("xの範囲[%lf,%lf]\n", coord[i][0], coord[i + 1][0]);
+		//printf("xの範囲[%lf,%lf]\n", coord[i][0], coord[i + 1][0]);
 		if (coord[i+inv][0] <= p && p <= coord[i+1-inv][0]) {
-			printf("a=%lf,b=%lf,c=%lf,d=%lf ", keisu[i][0], keisu[i][1], keisu[i][2], keisu[i][3]);
+			//printf("a=%lf,b=%lf,c=%lf,d=%lf ", keisu[i][0], keisu[i][1], keisu[i][2], keisu[i][3]);
 			double tmp1 = keisu[i][0] * pow(p - coord[i][0], 3);
 			double tmp2 = keisu[i][1] * pow(p - coord[i][0], 2);
 			double tmp3 = keisu[i][2] * (p - coord[i][0]);
@@ -24,9 +24,9 @@ double CubicSpline::interpolation(double p,bool inverse) {
 //3次スプライン補間(点の座標データ、点の数)
 void CubicSpline::cubicSpline(vector<vector<double>> points, int n){
 	
+	InitVector();
 	N = n - 1;//補間多項式の数(N)
 	coord = points;
-
 	double* u_array;
 	u_array = new double[N+1];
 	u_array[0] = u_array[N] = 0;
@@ -42,9 +42,19 @@ void CubicSpline::cubicSpline(vector<vector<double>> points, int n){
 void CubicSpline::calc_h() {
 	for (int i = 0; i < N; i++) {
 		h_array.push_back(coord[i + 1][0] - coord[i][0]);
-		printf("h[%d]=%f\n", i, h_array[i]);
+		//printf("h[%d]=%f\n", i, h_array[i]);
 	}
 	//cout << "h_size= " << h_array.size() << "\n";
+}
+void CubicSpline::InitVector()
+{
+	coord.clear();//点の座標
+
+	v_array.clear();//v_j
+	h_array.clear();//h_j
+	A.clear();
+
+	keisu.clear(); //keisu[n][4]
 }
 //vの計算
 void CubicSpline::calc_v() {
@@ -55,9 +65,9 @@ void CubicSpline::calc_v() {
 	}
 	//cout << "v_size= " << v_array.size() << "\n";
 	for (int i = 0; i < N - 1; i++) {
-		cout << v_array[i] << " ";
+		//cout << v_array[i] << " ";
 	}
-	cout << "\n";
+	//cout << "\n";
 }
 
 //左辺左の行列作成
@@ -87,15 +97,15 @@ void CubicSpline::make_array(vector<double> h) {
 
 	}
 	for (int i = 0; i < N - 1; i++) {
-		printf("v_array[%d]=%4.2f \n",i,v_array[i]);
+		//printf("v_array[%d]=%4.2f \n",i,v_array[i]);
 		A[i].push_back(v_array[i]);
 	}
 
 	for (int i = 0; i < N - 1; i++) {
 		for (int j = 0; j < N; j++) {
-			printf("%5.3f ",A[i][j]);
+			//printf("%5.3f ",A[i][j]);
 		}
-		cout << "\n";
+		//cout << "\n";
 	}
 }
 
@@ -105,21 +115,21 @@ void CubicSpline::calc_keisu(double u_array[]) {
 	EquationsSolver es;
 	es.GaussEliminationPivoting(A, u_array,N-1,1,N-1);
 	for (int i = 0; i <= N; i++) {
-		printf("u[%d]=%5.3f\n",i,u_array[i]);
+		//printf("u[%d]=%5.3f\n",i,u_array[i]);
 	}
-	cout << "----------------------------------------\n";
+	//cout << "----------------------------------------\n";
 	for (int i = 0; i <= N-1; i++) {
 		keisu[i].push_back(calc_a(u_array, i));
 		keisu[i].push_back(calc_b(u_array, i));
 		keisu[i].push_back(calc_c(u_array, i));
 		keisu[i].push_back(calc_d(i));
 
-		cout << keisu[i][0] << "\n";
-		cout << keisu[i][1] << "\n";
-		cout << keisu[i][2] << "\n";
-		cout << keisu[i][3] << "\n";
-		cout << "------------------------\n";
-		cout << endl;
+		//cout << keisu[i][0] << "\n";
+		//cout << keisu[i][1] << "\n";
+		//cout << keisu[i][2] << "\n";
+		//cout << keisu[i][3] << "\n";
+		//cout << "------------------------\n";
+		//cout << endl;
 	}
 }
 //aの計算
