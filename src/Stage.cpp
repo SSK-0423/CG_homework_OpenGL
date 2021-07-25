@@ -18,7 +18,7 @@ void Stage::MakeStage()
 				const char* path = filepaths[index % 3].c_str();
 				obj->AddComponent<Building>(path);
 				obj->GetComponent<Transform>()->SetPosition(TILE_SIZE * i, 0, TILE_SIZE * j);
-				obj->GetComponent<Transform>()->SetSize(TILE_SIZE, TILE_SIZE * 2, TILE_SIZE);
+				obj->GetComponent<Transform>()->SetSize(TILE_SIZE, TILE_SIZE * 4, TILE_SIZE);
 				buildingObjList.push_back(obj);
 			}
 			index++;

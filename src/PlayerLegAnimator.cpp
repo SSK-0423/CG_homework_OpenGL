@@ -12,8 +12,31 @@ PlayerLegAnimator::PlayerLegAnimator()
 	frameCount = 0;
 }
 
+PlayerLegAnimator::PlayerLegAnimator(int value)
+{
+	ChangeAnimeSpeed(value);
+	cubicSpline.cubicSpline(firstJoint, firstJoint.size());
+	MakeLerpList(firstLerp);
+	cubicSpline.cubicSpline(secondJoint, secondJoint.size());
+	MakeLerpList(secondLerp);
+	cubicSpline.cubicSpline(thirdJoint, thirdJoint.size());
+	MakeLerpList(thirdLerp);
+	stat = 0;
+	frameCount = 0;
+}
+
 PlayerLegAnimator::~PlayerLegAnimator()
 {
+}
+
+void PlayerLegAnimator::ChangeAnimeSpeed(int frame)
+{
+	animeSpeed = (float)frame / 80;
+	for (int i = 0; i < firstJoint.size(); i++) {
+		firstJoint[i][0] *= animeSpeed;
+		secondJoint[i][0] *= animeSpeed;
+		thirdJoint[i][0] *= animeSpeed;
+	}
 }
 
 void PlayerLegAnimator::MakeLerpList(std::vector<double>& list)
@@ -25,22 +48,39 @@ void PlayerLegAnimator::MakeLerpList(std::vector<double>& list)
 	}
 }
 
-void PlayerLegAnimator::Animation(double& legRotateY, double& firstJointRotate, double& secondJointRotate, double& thirdJointRotate, bool inverse)
+void PlayerLegAnimator::Animation(double& legRotateY, double& firstJointRotate, double& secondJointRotate, double& thirdJointRotate, bool inverse,int fps,int animeType)
 {
-	int fps = 80;
 	if (frameCount >= fps) {
 		frameCount = 0;
-		stat += 1;
 	}
-	if (inverse) {
-		firstJointRotate = firstLerp[(frameCount + 40) % fps];
-		secondJointRotate = secondLerp[(frameCount+40) % fps];
-		thirdJointRotate = thirdLerp[(frameCount + 40) % fps];
+	if (animeType == 0)
+	{
+		if (inverse) {
+			firstJointRotate = firstLerp[(frameCount + fps / 2) % fps];
+			secondJointRotate = secondLerp[(frameCount + fps / 2) % fps];
+			thirdJointRotate = thirdLerp[(frameCount + fps / 2) % fps];
+		}
+		else {
+			firstJointRotate = firstLerp[frameCount];
+			secondJointRotate = secondLerp[frameCount];
+			thirdJointRotate = thirdLerp[frameCount];
+		}
 	}
-	else {
-		firstJointRotate = firstLerp[frameCount];
-		secondJointRotate = secondLerp[frameCount];
-		thirdJointRotate = thirdLerp[frameCount];
+	
+	if (animeType == 1) {
+
+		const int LISTMAX = fps - 1;
+		
+		if (inverse) {
+			firstJointRotate = firstLerp[LISTMAX - (frameCount + fps / 2) % fps] ;
+			secondJointRotate = secondLerp[LISTMAX- (frameCount + fps / 2) % fps];
+			thirdJointRotate = thirdLerp[LISTMAX - (frameCount + fps / 2) % fps];
+		}
+		else {
+			firstJointRotate = firstLerp[LISTMAX - frameCount];
+			secondJointRotate = secondLerp[LISTMAX - frameCount];
+			thirdJointRotate = thirdLerp[LISTMAX - frameCount];
+		}
 	}
 	frameCount++;
 }

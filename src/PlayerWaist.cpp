@@ -14,7 +14,7 @@ void PlayerWaist::Draw(const float& x, const float& y, const float& z)
 	{
 		glTranslated(x * size, y * size, z * size);
 		glScaled(1.5 * size, 0.5 * size, 0.5 * size);
-		glutWireCube(1);
+		glutSolidCube(1);
 	}
 	glPopMatrix();
 }

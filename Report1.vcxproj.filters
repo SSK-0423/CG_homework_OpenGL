@@ -46,6 +46,12 @@
     <Filter Include="ヘッダー ファイル\CubicSpline">
       <UniqueIdentifier>{8a8a6da9-0c42-43b2-b51c-cc6821f8b11c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Stage">
+      <UniqueIdentifier>{10558408-c717-48f6-9cbd-80dc3e8f17ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Object\Stage">
+      <UniqueIdentifier>{1f066d47-6252-4972-9cd8-96eccb0923e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -60,19 +66,7 @@
     <ClCompile Include="src\Workspace.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="src\FrontLegAnimator.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MiddleLegAnimator.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="src\Lerp.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="src\HindLegAnimator.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Stage.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="src\Debug.cpp">
@@ -80,15 +74,6 @@
     </ClCompile>
     <ClCompile Include="src\Texture.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Building.cpp">
-      <Filter>ソース ファイル\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Floor.cpp">
-      <Filter>ソース ファイル\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SkyBox.cpp">
-      <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
     <ClCompile Include="src\ICharacter.cpp">
       <Filter>ソース ファイル</Filter>
@@ -138,6 +123,27 @@
     <ClCompile Include="src\PlayerLegAnimator.cpp">
       <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
+    <ClCompile Include="src\FrontLegAnimator.cpp">
+      <Filter>ソース ファイル\Spyder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HindLegAnimator.cpp">
+      <Filter>ソース ファイル\Spyder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MiddleLegAnimator.cpp">
+      <Filter>ソース ファイル\Spyder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Building.cpp">
+      <Filter>ソース ファイル\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Floor.cpp">
+      <Filter>ソース ファイル\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SkyBox.cpp">
+      <Filter>ソース ファイル\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stage.cpp">
+      <Filter>ソース ファイル\Stage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Camera.h">
@@ -159,9 +165,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\Debug.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Stage.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\AudioSource.hpp">
@@ -217,15 +220,6 @@
     </ClInclude>
     <ClInclude Include="src\Texture.h">
       <Filter>ヘッダー ファイル\Game\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Building.h">
-      <Filter>ヘッダー ファイル\Game\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Floor.h">
-      <Filter>ヘッダー ファイル\Game\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="src\SkyBox.h">
-      <Filter>ヘッダー ファイル\Game\Object</Filter>
     </ClInclude>
     <ClInclude Include="src\Spyder.h">
       <Filter>ヘッダー ファイル\Game\Object\Spyder</Filter>
@@ -283,6 +277,21 @@
     </ClInclude>
     <ClInclude Include="src\PlayerLegAnimator.h">
       <Filter>ヘッダー ファイル\Game\Object\Plyaer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cross.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Building.h">
+      <Filter>ヘッダー ファイル\Game\Object\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Floor.h">
+      <Filter>ヘッダー ファイル\Game\Object\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SkyBox.h">
+      <Filter>ヘッダー ファイル\Game\Object\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stage.h">
+      <Filter>ヘッダー ファイル\Game\Object\Stage</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,11 @@
 #pragma once
 #include "GameData.h"
 
+enum CAMERATYPE {
+	CAMERA_TPS,
+	CAMERA_FPS
+};
+
 class Camera {
 private:
 	// ƒJƒƒ‰À•W

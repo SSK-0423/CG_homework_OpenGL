@@ -183,6 +183,7 @@
     <ClInclude Include="src\ColliderCube.h" />
     <ClInclude Include="src\Component.hpp" />
     <ClInclude Include="src\ComponentSystem.hpp" />
+    <ClInclude Include="src\Cross.h" />
     <ClInclude Include="src\CubicSpline.hpp" />
     <ClInclude Include="src\Debug.h" />
     <ClInclude Include="src\Enemy.h" />

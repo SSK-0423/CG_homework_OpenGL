@@ -1,49 +1,23 @@
 #include "Player.h"
+#include "Debug.h"
 #include <math.h>
 #include <stdio.h>
 
 #define PI 3.141592
 
-void Player::DrawLocalAxis()
-{
-	int axisLength = 5;
-	// XYZŽ²‚Ì•`‰æ
-	glBegin(GL_LINES);
-	{
-		Position3D<float> position;
-		position = transform->GetPosition();
-		float axisMtr[3][4] = {
-			{1.0,1.0,0.0,0.0},
-			{1.0,0.0,0.0,0.0},
-			{0.0,0.0,1.0,0.0}
-		};
-		glColor3d(1.0, 1.0, 0.0);	// yellow
-		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, axisMtr[0]);
-		glVertex3d(0, 0, 0); glVertex3d(position.x + axisLength, 0, 0);	//x-axis
-		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, axisMtr[1]);
-		glVertex3d(0, 0, 0); glVertex3d(0, position.y + axisLength, 0);	//y-axis
-		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, axisMtr[2]);
-		glVertex3d(0, 0, 0); glVertex3d(0, 0, position.z + axisLength);	//z-axis
-	}
-	glEnd();
-}
-
-
-void Player::MakeLerpList(std::vector<double>& list)
-{
-	for (int i = 0; i < 80; i++) {
-		list.push_back(cubicSpline.interpolation(i, false));
-	}
-}
 
 Player::Player(bool b)
 {
 	transform = nullptr;
+	bodyTexture = new Texture("textures/meisai.ppm");
 	objSize.depth = objSize.height = objSize.width = 2;
 	size = 1;
 	myPlayer = b;
 	frameCount = 0;
 	animeState = 0;
+	animeFrame = 60;
+	cameraType = CAMERA_TPS;
+	ChangeAnimeSpeed(animeFrame);
 	cubicSpline.cubicSpline(playerY, playerY.size());
 	MakeLerpList(yLerp);
 }
@@ -69,62 +43,39 @@ void Player::Draw()
 	forward.y = 1 * sin(rotateAngle.x * PI / 180.0);
 	forward.z = 1 * cos(rotateAngle.y * PI / 180.0);
 
-	Animation();
-	if (myPlayer) {
-		//camera.SetPosition(position.x - forward.x * 3, position.y + 3, position.z - forward.z * 3);
-		//camera.SetViewPosition(position.x + forward.x * 10, position.y + 3, position.z + forward.z * 10);
-		camera.SetPosition(position.x - forward.x * 1, position.y + 2, position.z - forward.z * 1);
-		camera.SetViewPosition(position.x + forward.x * 10, position.y + 2, position.z + forward.z * 10);
-		camera.Draw();
+	//if (myPlayer) {
+	if (cameraType == CAMERA_TPS) {
+		camera.SetPosition(position.x - forward.x * 9, position.y + 5, position.z - forward.z * 9);
+		camera.SetViewPosition(position.x + forward.x * 10, position.y + 10, position.z + forward.z * 10);
 	}
-	if (!myPlayer) {
-		glPushMatrix();
-		{
-			glTranslated(position.x, position.y + objSize.height / 2, position.z);
-			glRotated(rotateAngle.x, 1, 0, 0);
-			glRotated(rotateAngle.y, 0, 1, 0);
-			glRotated(rotateAngle.z, 0, 0, 1);
-			DrawPlayer();
-			DrawLocalAxis();
-		}
-		glPopMatrix();
+	else if (cameraType == CAMERA_FPS) {
+		camera.SetPosition(position.x + forward.x, position.y + 5, position.z + forward.z);
+		camera.SetViewPosition(position.x + forward.x * 10, position.y + 5, position.z + forward.z * 10);
 	}
+	//camera.SetPosition(position.x - forward.x * 1, position.y + 2, position.z - forward.z * 1);
+	//camera.SetViewPosition(position.x + forward.x * 10, position.y + 2, position.z + forward.z * 10);
+	camera.Draw();
+	//}
+	//if (!myPlayer) {
+	glPushMatrix();
+	{
+		glTranslated(position.x, position.y + objSize.height / 2, position.z);
+		glRotated(rotateAngle.x, 1, 0, 0);
+		glRotated(rotateAngle.y, 0, 1, 0);
+		glRotated(rotateAngle.z, 0, 0, 1);
+		DrawPlayer();
+		DrawLocalAxis();
+		DebugDraw();
+	}
+	glPopMatrix();
+	//}
 }
 
 // ƒvƒŒƒCƒ„[‚Ìƒ‚ƒfƒ‹•`‰æ
 void Player::DrawPlayer()
 {
-	ChangeObjectSize(1);
-	//switch (animeState)
-	//{
-	//case 0:
-	//	down = -0.2;
-	//	break;
-	//case 1:
-	//	down = -0.2;
-	//	break;
-	//case 2:
-	//	down = -0.125;
-	//	break;
-	//case 3:
-	//	down = 0;
-	//	break;
-	//case 4:
-	//	down = -0.2;
-	//	break;
-	//case 5:
-	//	down = -0.2;
-	//	break;
-	//case 6:
-	//	down = -0.125;
-	//	break;
-	//case 7:
-	//	down = 0;
-	//	break;
-	//default:
-	//	break;
-	//}
-	glTranslated(0, down, 0);
+	glTranslated(0, down*size, 0);
+	ChangeObjectSize(1.5);
 	glPushMatrix();
 	{
 		head.Draw(0, 4 - 0.25, 0);
@@ -135,9 +86,10 @@ void Player::DrawPlayer()
 		legRight.Draw(-0.5, 2.325 - 0.75 - 0.75, 0, false, animeState);
 	}
 	glPopMatrix();
+	material.EnableMaterial(AMBIENT | DIFFUSE);
 	glTranslated(0, (2.325 + 1 + 0.25 - 0.75 - 0.5) * size, 0);
 	glScaled(1.5 * size, 2 * size, 0.5 * size);
-	glutWireCube(1);
+	glutSolidCube(1);
 }
 
 void Player::SetParentObject(Object& obj)
@@ -148,17 +100,34 @@ void Player::SetParentObject(Object& obj)
 
 void Player::Animation()
 {
-	if (frameCount >= 80) {
+	if (frameCount >= animeFrame) {
 		frameCount = 0;
 	}
 	down = yLerp[frameCount];
 	frameCount++;
-	legLeft.Animation(true);
-	legRight.Animation(false);
+	legLeft.Animation(true, animeFrame,0);
+	legRight.Animation(false, animeFrame,0);
+}
+
+void Player::BackAnimation()
+{
+	if (frameCount >= animeFrame) {
+		frameCount = 0;
+	}
+	down = yLerp[frameCount];
+	frameCount++;
+	legLeft.Animation(true, animeFrame, 1);
+	legRight.Animation(false, animeFrame, 1);
 }
 
 void Player::MoveForward(float dist)
 {
+	if (dist < 0) {
+		BackAnimation();
+	}
+	else {
+		Animation();
+	}
 	Position3D<float> position;
 	position = transform->GetPosition();
 	RotateAngle3D<float> angle;
@@ -214,6 +183,9 @@ void Player::ChangeObjectSize(int value)
 	waist.ChangeObjSize(size);
 	legRight.ChangeObjSize(size);
 	legLeft.ChangeObjSize(size);
+	//for (int i = 0; i < yLerp.size(); i++) {
+	//	yLerp[i] /= size;
+	//}
 }
 
 // ‰ñ“]ƒeƒXƒg
@@ -255,4 +227,68 @@ void Player::DrawAnimeState()
 	default:
 		break;
 	}
+}
+
+void Player::ChangeAnimeSpeed(int frame)
+{
+	animeSpeed = (float)frame / 80;
+	for (int i = 0; i < playerY.size(); i++) {
+		playerY[i][0] *= animeSpeed;
+	}
+}
+
+void Player::StopAnime()
+{
+	legRight.StopAnime();
+	legLeft.StopAnime();
+}
+
+void Player::DrawLocalAxis()
+{
+	int axisLength = 5;
+	// XYZŽ²‚Ì•`‰æ
+	glBegin(GL_LINES);
+	{
+		Position3D<float> position;
+		position = transform->GetPosition();
+		float axisMtr[3][4] = {
+			{1.0,1.0,0.0,0.0},
+			{1.0,0.0,0.0,0.0},
+			{0.0,0.0,1.0,0.0}
+		};
+		glColor3d(1.0, 1.0, 0.0);	// yellow
+		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, axisMtr[0]);
+		glVertex3d(0, 0, 0); glVertex3d(position.x + axisLength, 0, 0);	//x-axis
+		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, axisMtr[1]);
+		glVertex3d(0, 0, 0); glVertex3d(0, position.y + axisLength, 0);	//y-axis
+		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, axisMtr[2]);
+		glVertex3d(0, 0, 0); glVertex3d(0, 0, position.z + axisLength);	//z-axis
+	}
+	glEnd();
+}
+
+void Player::MakeLerpList(std::vector<double>& list)
+{
+	for (int i = 0; i < 80; i++) {
+		list.push_back(cubicSpline.interpolation(i, false));
+	}
+}
+
+void Player::DebugDraw()
+{
+	float ambient[] = { 1.0,1.0,1.0,1.0 };
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient);
+	Position3D<float> position = parent->GetComponent<Transform>()->GetPosition();
+	char buff[64];
+	sprintf_s(buff, "x:%f", position.x);
+	DrawString(buff, -1, 2, -1);
+	sprintf_s(buff, "y:%f", position.y);
+	DrawString(buff, -1, 3, -1);
+	sprintf_s(buff, "z:%f", position.z);
+	DrawString(buff, -1, 4, -1);
+}
+
+void Player::ChangeCamera(CAMERATYPE type)
+{
+	cameraType = type;
 }

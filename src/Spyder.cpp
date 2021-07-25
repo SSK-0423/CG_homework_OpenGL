@@ -5,10 +5,6 @@
 #include "Lerp.h"
 #define PI 3.141592
 
-FrontLegAnimator Spyder::frontLegAni;
-MiddleLegAnimator Spyder::middleLegAni;
-HindLegAnimator Spyder::hindLegAni;
-
 void Spyder::InitAnimation()
 {
 	//右脚
@@ -27,15 +23,15 @@ void Spyder::InitAnimation()
 void Spyder::MoveAnimation()
 {
 	DebugDraw();
-	position.x = xLerp[state % xLerp.size()];
-	position.z = zLerp[state % zLerp.size()];
+	position.x = xLerp[(state + 120 * num) % xLerp.size()];
+	position.z = zLerp[(state + 120 * num) % zLerp.size()];
 	state += 1;
-	if (position.x == 0.0f && position.z == -30.0f ||
-		position.x == 30.0f && position.z == -30.0f ||
-		position.x == 30.0f && position.z == 30.0f ||
-		position.x == -30.0f && position.z == 30.0f ||
-		position.x == -30.0f && position.z == 0.0f) {
-		angle -= 90;
+	if (position.x == 0.0f && position.z == -90.0f ||
+		position.x == 90.0f && position.z == -90.0f ||
+		position.x == 90.0f && position.z == 90.0f ||
+		position.x == -90.0f && position.z == 90.0f ||
+		position.x == -90.0f && position.z == 0.0f) {
+		angle -= 90.0f;
 	}
 	if (position.x == 0.0f && position.z == 0.0f) {
 		angle = 0;
@@ -53,7 +49,8 @@ void Spyder::DebugDraw()
 	DrawString(buff, position.x, position.y, position.z - 2);
 }
 
-Spyder::Spyder() {
+Spyder::Spyder(int value) {
+	num = value;
 	angle = 0;
 	state = 0;
 	position.x = 0;
@@ -62,16 +59,17 @@ Spyder::Spyder() {
 	MakeLerpList(x, xLerp, 300);
 	MakeLerpList(z, zLerp, 300);
 	InitAnimation();
-	bodyTexture = new Texture("textures/spyderbody.ppm");
+	bodyMaterial.SetMaterial(bodyParam);
 }
 
 void Spyder::Draw() {
 	//茶色
 	//glColor3d(0.5, 0.25, 0);
-	bodyTexture->SetTexture();
+	//bodyTexture->SetTexture();
 	//glMaterialfv(GL_FRONT, GL_AMBIENT, mtr);
 	// 最上位の単位行列をコピー
-	glEnable(GL_TEXTURE_2D);
+	//glEnable(GL_TEXTURE_2D);
+	bodyMaterial.EnableMaterial(AMBIENT | DIFFUSE);
 	glPushMatrix();
 	{
 		// 胴体

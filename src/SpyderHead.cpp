@@ -5,6 +5,7 @@ void SpyderHead::DrawEye(float x, float y, float z, double r, int slices, int st
 	glPushMatrix();
 	{
 		glTranslated(x, y, z);
+		eyeMaterial.EnableMaterial(AMBIENT | DIFFUSE | EMISSION);
 		glutSolidSphere(r, slices, stacks);
 	}
 	glPopMatrix();
@@ -19,6 +20,7 @@ void SpyderHead::DrawTactile(float x, float y, float z)
 		glTranslated(x, y, -0.5);
 		glPushMatrix();
 		{
+			tactileMaterial.EnableMaterial(AMBIENT | DIFFUSE);
 			glColor3d(0.5, 0.5, 0);
 			glTranslated(0, 0, -0.5);
 			glRotated(-90, 1, 0, 0);
@@ -28,6 +30,7 @@ void SpyderHead::DrawTactile(float x, float y, float z)
 		}
 		glPopMatrix();
 		glColor3d(0.3, 0.3, 0.3);
+		bodyMaterial.EnableMaterial(AMBIENT | DIFFUSE);
 		glScaled(0.5, 0.5, 1);
 		glutSolidCube(1);
 	}
@@ -37,13 +40,15 @@ void SpyderHead::DrawTactile(float x, float y, float z)
 SpyderHead::SpyderHead()
 {
 	eyeTexture = new Texture("textures/spyderEye.ppm");
+	eyeMaterial.SetMaterial(eyeParam);
+	bodyMaterial.SetMaterial(bodyParam);
+	tactileMaterial.SetMaterial(tactileParam);
 }
 
 void SpyderHead::Draw(float x, float y, float z) {
-	glEnable(GL_TEXTURE_2D);
 	glPushMatrix();
 	{
-		eyeTexture->SetTexture();
+		//eyeTexture->SetTexture();
 		//glColor3d(1, 0, 0);			//ê‘
 		//glMaterialfv(GL_FRONT, GL_AMBIENT, mtr[0]);
 		glTranslated(x, y, z);
@@ -58,11 +63,12 @@ void SpyderHead::Draw(float x, float y, float z) {
 		DrawTactile(1, -0.5, -1.5);
 		DrawTactile(-1, -0.5, -1.5);
 		glColor3d(0.5, 0.25, 0);
+
+		bodyMaterial.EnableMaterial(AMBIENT | DIFFUSE);
 		glScaled(4, 3, 1);
 		glutSolidCube(1);
 	}
 	glPopMatrix();
-	glDisable(GL_TEXTURE_2D);
 }
 void SpyderHead::Animation() {
 

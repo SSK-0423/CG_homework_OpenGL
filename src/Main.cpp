@@ -11,29 +11,34 @@
 #include "Player.h"
 #include "GameData.h"
 #include "Building.h"
+#include <vector>
 
 #define WINDOW_WIDTH 500
 #define WINDOW_HEIGHT 500
 
-static Spyder spyder;
+static std::vector<Spyder*> spyders;
 static Stage stage;
 static GameObject player;
-static GameObject playerModel; 
+static GameObject playerModel;
 static FPS fps;
 static Transform* pTransform;
 static GameObject* obj;
 static GameObject* obj2;
+
 unsigned char	mouseFlag = GL_FALSE;		// flag for moving or not
 int				xStart, yStart;				// start position when drug begins
 double			xAngle = 0.0, yAngle = 0.0;	// angles of the teapot
 static Position3D<float> playerPos;
-float initMtr[4] = { 1.0,1.0,1.0,0.0 };
+float initMtr[4] = { 1.0,1.0,1.0,1.0 };
+float moveSpeed = 0.3;
+int animeStopCount = 0;
+
 
 static MaterialParam sun = {
-	{1.0,1.0,0.0,1.0},
-	{1.0,1.0,0.0,1.0},
-	{1.0,1.0,1.0,1.0},
-	{0.8,0.8,0.8,1.0},
+	{0.8,0.8,0.0,1.0},
+	{0.8,0.8,0.0,1.0},
+	{0.0,0.0,0.0,1.0},
+	{0.8,0.8,0.0,1.0},
 	128
 };
 
@@ -68,24 +73,18 @@ void myDisplay(void)
 	{
 		glPushMatrix();
 		{
+			glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, initMtr);
 			player.GetComponent<Transform>()->SetRotateAngle(0, yAngle, 0);
 			player.Draw();
-			playerModel.Draw();
+			//playerModel.Draw();
 			glMaterialfv(GL_FRONT, GL_AMBIENT, initMtr);
-			//spyder.Animation();
-			//spyder.Draw();
+			for (auto obj : spyders) {
+				obj->Draw();
+				obj->Animation();
+			}
 			glMaterialfv(GL_FRONT, GL_AMBIENT, initMtr);
 			stage.Draw();
-			//obj->Draw();
-			//obj2->Draw();
 		}
-		//glMaterialfv(GL_FRONT, GL_AMBIENT, sun.ambient);
-		//glMaterialfv(GL_FRONT, GL_DIFFUSE, sun.diffuse);
-		//glMaterialfv(GL_FRONT, GL_SPECULAR, sun.specular);
-		//glMaterialfv(GL_FRONT, GL_EMISSION, sun.emission);
-		//glMaterialfv(GL_FRONT, GL_SHININESS, &sun.shininess);
-		//glNormal3dv(normal);
-		//glutSolidSphere(4, 10, 10);
 		glPopMatrix();
 	}
 	glPopMatrix();
@@ -100,8 +99,12 @@ void myDisplay(void)
 	glDisable(GL_NORMALIZE);
 	// バックバッファの内容をフロントバッファに転送
 	glutSwapBuffers();
-}
 
+	if (animeStopCount <= 0) {
+		player.GetComponent<Player>()->StopAnime();
+	}
+	else animeStopCount--;
+}
 // 
 void myReshape(int width, int height)
 {
@@ -122,96 +125,57 @@ void myReshape(int width, int height)
 // キー入力関数
 void myKeyboard(unsigned char key, int x, int y)
 {
-	Position3D<float> position;
-	//position = player.GetComponent<Transform>()->GetPosition();
 	switch (key) {
 	case 'w':
-		player.GetComponent<Player>()->MoveForward(1);
+		player.GetComponent<Player>()->MoveForward(moveSpeed);
+		animeStopCount = 10;
 		glutPostRedisplay();
 		break;
 	case 'W':
-		player.GetComponent<Player>()->MoveForward(1);
+		player.GetComponent<Player>()->MoveForward(moveSpeed);
+		animeStopCount = 10;
 		glutPostRedisplay();
 		break;
 	case 's':
-		player.GetComponent<Player>()->MoveForward(-1);
+		player.GetComponent<Player>()->MoveForward(-moveSpeed);
+		animeStopCount = 10;
 		glutPostRedisplay();
 		break;
 	case 'S':
-		player.GetComponent<Player>()->MoveForward(-1);
+		player.GetComponent<Player>()->MoveForward(-moveSpeed);
+		animeStopCount = 10;
 		glutPostRedisplay();
 		break;
-	case 'd':
-		glutPostRedisplay();
-		break;
-	case 'D':
-		glutPostRedisplay();
-		break;
-	case 'a':
-		//playerModel.GetComponent<Player>()->Animation();
-		playerModel.GetComponent<Player>()->animeState += 1;
-		playerModel.GetComponent<Player>()->DrawAnimeState();
-		glutPostRedisplay();
-		break;
-	case 'A':
-		//playerModel.GetComponent<Player>()->Animation();
-		playerModel.GetComponent<Player>()->animeState += 1;
-		glutPostRedisplay();
-		break;
-	case 'e':
-		player.GetComponent<Player>()->MoveUP(0.5);
-		glutPostRedisplay();
-		break;
-	case 'E':
-		player.GetComponent<Player>()->MoveUP(0.5);
-		glutPostRedisplay();
-		break;
-	case 'q':
-		player.GetComponent<Player>()->MoveUP(-0.5);
-		glutPostRedisplay();
-		break;
-	case 'Q':
-		player.GetComponent<Player>()->MoveUP(-0.5);
-		glutPostRedisplay();
-		break;
-	case 'z':
-		playerModel.GetComponent<Player>()->LegRotate(1, 1);
-		glutPostRedisplay();
-		break;
-	case 'Z':
-		playerModel.GetComponent<Player>()->LegRotate(1, 1);
-		glutPostRedisplay();
-		break;
-	case 'x':
-		playerModel.GetComponent<Player>()->LegRotate(1, 2);
-		glutPostRedisplay();
-		break;
-	case 'X':
-		playerModel.GetComponent<Player>()->LegRotate(1, 2);
-		glutPostRedisplay();
-		break;
-	case 'c':
-		playerModel.GetComponent<Player>()->LegRotate(1, 3);
-		glutPostRedisplay();
-		break;
-	case 'C':
-		playerModel.GetComponent<Player>()->LegRotate(1, 3);
-		glutPostRedisplay();
-		break;
-		//case '1':
-		//	camera.ChangeCamera(0);
+		//case 'd':
+		//	glutPostRedisplay();
 		//	break;
-		//case '2':
-		//	camera.ChangeCamera(1);
+		//case 'D':
+		//	glutPostRedisplay();
 		//	break;
-		//case '3':
-		//	camera.ChangeCamera(2);
+		//case 'a':
+		//	playerModel.GetComponent<Player>()->animeState += 1;
+		//	playerModel.GetComponent<Player>()->DrawAnimeState();
+		//	glutPostRedisplay();
 		//	break;
-		//case '4':
-		//	camera.ChangeCamera(3);
+		//case 'A':
+		//	playerModel.GetComponent<Player>()->animeState += 1;
+		//	glutPostRedisplay();
 		//	break;
-	case 27:
-		exit(0);
+		//case 'e':
+		//	player.GetComponent<Player>()->MoveUP(0.5);
+		//	glutPostRedisplay();
+		//	break;
+		//case 'E':
+		//	player.GetComponent<Player>()->MoveUP(0.5);
+		//	glutPostRedisplay();
+		//	break;
+		//case 'q':
+		//	player.GetComponent<Player>()->MoveUP(-0.5);
+		//	glutPostRedisplay();
+		//	break;
+		//case 'Q':
+		//	player.GetComponent<Player>()->MoveUP(-0.5);
+		//	glutPostRedisplay();
 		break;
 	default:
 		break;
@@ -261,23 +225,29 @@ void mySetLight()
 {
 	/* LIGHT0:太陽光 */
 	float light0_position[] = { 0,  100.0, 0, 0 };
-	float light0_ambient[] = { 0.8, 0.8, 0.75, 0.0 };
+	float light0_ambient[] = { 0.4, 0.4, 0.4, 0 };
+	float light0_diffuse[] = { 0.5,0.5,0.5,0 };
+	float light0_emission[] = { 1.0,1.0,1.0,0 };
 	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light0_ambient);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, light0_diffuse);
+	glLightfv(GL_LIGHT0,GL_EMISSION,light0_emission);
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, light0_ambient);
 
-	float light1_position[] = { -1.0, -1.0, 1.0, 1.0 };	// point light source
-	float light1_ambient[] = { 0, 0, 0.0, 1.0 };
-	float light1_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
-	float light1_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+	float light1_position[] = { 0, 50.0, 0.0, 1.0 };	// point light source
+	float light1_ambient[] = { 0.0, 0.0, 0.0, 1.0 };
+	float light1_diffuse[] = { 0.0, 0.0, 0.0, 1.0 };
+	float light1_specular[] = { 0.0, 0.0, 0.0, 1.0 };
+	float light1_emission[] = { 0.0,1.0,0.0,1.0 };
 
 	glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
 	glLightfv(GL_LIGHT1, GL_AMBIENT, light1_ambient);
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, light1_diffuse);
 	glLightfv(GL_LIGHT1, GL_SPECULAR, light1_specular);
+	//glLightfv(GL_LIGHT1, GL_EMISSION, light1_emission);
 
 	glEnable(GL_LIGHT0);		// enable the 0th light
-	//glEnable(GL_LIGHT1);		// enable the 1st light
+	glEnable(GL_LIGHT1);		// enable the 1st light
 }
 
 void InitTexture()
@@ -300,9 +270,18 @@ void Menu(int value) {
 	{
 	case 1:
 		printf("value:%d\n", value);
+		player.GetComponent<Player>()->ChangeCamera(CAMERA_TPS);
 		break;
 	case 2:
 		printf("value:%d\n", value);
+		player.GetComponent<Player>()->ChangeCamera(CAMERA_FPS);
+		break;
+	case 3:
+		printf("value:%d\n", value);
+		for (auto obj : spyders) {
+			delete obj;
+		}
+		spyders.clear();
 		exit(0);
 		break;
 	default:
@@ -313,8 +292,9 @@ void Menu(int value) {
 void mySetMenu()
 {
 	glutCreateMenu(Menu);
-	glutAddMenuEntry("Test1", 1);
-	glutAddMenuEntry("GameEnd", 2);
+	glutAddMenuEntry("TPS", 1);
+	glutAddMenuEntry("FPS", 2);
+	glutAddMenuEntry("GameEnd", 3);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
 int main(int argc, char** argv)
@@ -344,6 +324,9 @@ int main(int argc, char** argv)
 	playerPos = pTransform->GetPosition();
 	playerModel.AddComponent<Player>(false);
 	fps.SetFPS(60);
+	for (int i = 0; i < 4; i++) {
+		spyders.push_back(new Spyder(i));
+	}
 	// イベント処理ループ
 	glutMainLoop();
 

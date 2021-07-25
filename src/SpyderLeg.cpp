@@ -10,6 +10,8 @@ SpyderLeg::SpyderLeg()
 	firstJointRotate = 90;
 	secondJointRotate = 30;
 	speed = 0.01;
+	material.SetMaterial(param);
+	material2.SetMaterial(param2);
 }
 
 void SpyderLeg::Draw(float x, float y, float z, int num) {
@@ -45,6 +47,7 @@ void SpyderLeg::Draw(float x, float y, float z, int num) {
 							glColor3d(0.5, 0.4, 0);
 							//glMaterialfv(GL_FRONT, GL_AMBIENT, mtr[1]);
 							glScaled(2, 1, 0.5);
+							material2.EnableMaterial(AMBIENT | DIFFUSE);
 							glutSolidCube(1);
 							glColor3d(0.5, 0.25, 0);
 							//glMaterialfv(GL_FRONT, GL_AMBIENT, mtr[0]);
@@ -52,6 +55,7 @@ void SpyderLeg::Draw(float x, float y, float z, int num) {
 						glPopMatrix();
 					}
 					glPopMatrix();
+					material.EnableMaterial(AMBIENT | DIFFUSE);
 					glScaled(sizeX, 1, 0.5);
 					glutSolidCube(1);
 				}
