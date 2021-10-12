@@ -1,2 +1,1 @@
-# EarthDefenseForce_OpenGL
-OpenGLで地球防衛軍っぽいゲームを作る
+コンピュータグラフィックスのOpenGLプログラミング課題
