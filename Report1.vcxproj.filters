@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\Object">
+      <UniqueIdentifier>{caefd7d5-8c49-4dfb-a256-1a16b8d1ad28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game">
+      <UniqueIdentifier>{a7f18c42-e3c1-42ce-8138-3d98abdca1d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\System/Interface">
+      <UniqueIdentifier>{32c8733d-0402-4ca7-9a09-48c670e3d0d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Object">
+      <UniqueIdentifier>{9ea1c8d8-3203-42af-a5bc-d03701f0f489}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Components">
+      <UniqueIdentifier>{d8cfccd3-ab14-4456-aa57-4a7785468879}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Object\Spyder">
+      <UniqueIdentifier>{65c26b1b-78b0-4b69-9444-1782c65a742b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Object\Plyaer">
+      <UniqueIdentifier>{5598055e-7ff5-4c9d-9078-635dcffc0770}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Player">
+      <UniqueIdentifier>{8a9680db-fb8f-46a0-a96f-4d3c7fc042bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Spyder">
+      <UniqueIdentifier>{7735d9bb-67ce-41e8-8565-9c6d95b5c64f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\CubicSpline">
+      <UniqueIdentifier>{8b9b90be-da02-49bd-8632-79d38c15e610}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\CubicSpline">
+      <UniqueIdentifier>{8a8a6da9-0c42-43b2-b51c-cc6821f8b11c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Stage">
+      <UniqueIdentifier>{10558408-c717-48f6-9cbd-80dc3e8f17ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Object\Stage">
+      <UniqueIdentifier>{1f066d47-6252-4972-9cd8-96eccb0923e7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Camera.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Workspace.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lerp.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Debug.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Texture.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ICharacter.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Material.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Player.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayerArm.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayerHead.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayerLeg.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayerWaist.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Spyder.cpp">
+      <Filter>ソース ファイル\Spyder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpyderHead.cpp">
+      <Filter>ソース ファイル\Spyder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpyderLeg.cpp">
+      <Filter>ソース ファイル\Spyder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpyderTale.cpp">
+      <Filter>ソース ファイル\Spyder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CubicSpline.cpp">
+      <Filter>ソース ファイル\CubicSpline</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EquationsSolver.cpp">
+      <Filter>ソース ファイル\CubicSpline</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GaussElimination.cpp">
+      <Filter>ソース ファイル\CubicSpline</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LUdecomposition.cpp">
+      <Filter>ソース ファイル\CubicSpline</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayerLegAnimator.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FrontLegAnimator.cpp">
+      <Filter>ソース ファイル\Spyder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HindLegAnimator.cpp">
+      <Filter>ソース ファイル\Spyder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MiddleLegAnimator.cpp">
+      <Filter>ソース ファイル\Spyder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Building.cpp">
+      <Filter>ソース ファイル\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Floor.cpp">
+      <Filter>ソース ファイル\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SkyBox.cpp">
+      <Filter>ソース ファイル\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stage.cpp">
+      <Filter>ソース ファイル\Stage</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Camera.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vector3D.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Workspace.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BodyPart.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Animator.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lerp.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Debug.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AudioSource.hpp">
+      <Filter>ヘッダー ファイル\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Transform.hpp">
+      <Filter>ヘッダー ファイル\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object.hpp">
+      <Filter>ヘッダー ファイル\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject.hpp">
+      <Filter>ヘッダー ファイル\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game.hpp">
+      <Filter>ヘッダー ファイル\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ICharacter.h">
+      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Enemy.h">
+      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IWeapon.h">
+      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AssaltRifle.h">
+      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AR_21.h">
+      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ICollider.h">
+      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ComponentSystem.hpp">
+      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component.hpp">
+      <Filter>ヘッダー ファイル\Game\System/Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ColliderCube.h">
+      <Filter>ヘッダー ファイル\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TestObject.h">
+      <Filter>ヘッダー ファイル\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameData.h">
+      <Filter>ヘッダー ファイル\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FPS.h">
+      <Filter>ヘッダー ファイル\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Texture.h">
+      <Filter>ヘッダー ファイル\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Spyder.h">
+      <Filter>ヘッダー ファイル\Game\Object\Spyder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SpyderHead.h">
+      <Filter>ヘッダー ファイル\Game\Object\Spyder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SpyderLeg.h">
+      <Filter>ヘッダー ファイル\Game\Object\Spyder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SpyderTale.h">
+      <Filter>ヘッダー ファイル\Game\Object\Spyder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Material.h">
+      <Filter>ヘッダー ファイル\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player.h">
+      <Filter>ヘッダー ファイル\Game\Object\Plyaer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PlayerArm.h">
+      <Filter>ヘッダー ファイル\Game\Object\Plyaer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PlayerHead.h">
+      <Filter>ヘッダー ファイル\Game\Object\Plyaer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PlayerLeg.h">
+      <Filter>ヘッダー ファイル\Game\Object\Plyaer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PlayerWaist.h">
+      <Filter>ヘッダー ファイル\Game\Object\Plyaer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CubicSpline.hpp">
+      <Filter>ヘッダー ファイル\CubicSpline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EquationsSolver.hpp">
+      <Filter>ヘッダー ファイル\CubicSpline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GaussElimination.hpp">
+      <Filter>ヘッダー ファイル\CubicSpline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LUdecomposition.hpp">
+      <Filter>ヘッダー ファイル\CubicSpline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LegAnimator.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FrontLegAnimator.h">
+      <Filter>ヘッダー ファイル\Game\Object\Spyder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HindLegAnimator.h">
+      <Filter>ヘッダー ファイル\Game\Object\Spyder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MiddleLegAnimator.h">
+      <Filter>ヘッダー ファイル\Game\Object\Spyder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PlayerLegAnimator.h">
+      <Filter>ヘッダー ファイル\Game\Object\Plyaer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cross.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Building.h">
+      <Filter>ヘッダー ファイル\Game\Object\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Floor.h">
+      <Filter>ヘッダー ファイル\Game\Object\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SkyBox.h">
+      <Filter>ヘッダー ファイル\Game\Object\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stage.h">
+      <Filter>ヘッダー ファイル\Game\Object\Stage</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

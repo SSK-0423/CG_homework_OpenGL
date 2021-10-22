@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{c11edc1a-a2e1-4aad-9f71-bec400eca0f7}</ProjectGuid>
+    <RootNamespace>Report1</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>EDF_OpenGL</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Building.cpp" />
+    <ClCompile Include="src\CubicSpline.cpp" />
+    <ClCompile Include="src\Debug.cpp" />
+    <ClCompile Include="src\EquationsSolver.cpp" />
+    <ClCompile Include="src\Floor.cpp" />
+    <ClCompile Include="src\FrontLegAnimator.cpp" />
+    <ClCompile Include="src\GaussElimination.cpp" />
+    <ClCompile Include="src\HindLegAnimator.cpp" />
+    <ClCompile Include="src\ICharacter.cpp" />
+    <ClCompile Include="src\Lerp.cpp" />
+    <ClCompile Include="src\LUdecomposition.cpp" />
+    <ClCompile Include="src\Material.cpp" />
+    <ClCompile Include="src\MiddleLegAnimator.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\PlayerArm.cpp" />
+    <ClCompile Include="src\PlayerHead.cpp" />
+    <ClCompile Include="src\PlayerLeg.cpp" />
+    <ClCompile Include="src\PlayerLegAnimator.cpp" />
+    <ClCompile Include="src\PlayerWaist.cpp" />
+    <ClCompile Include="src\Spyder.cpp" />
+    <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\SpyderHead.cpp" />
+    <ClCompile Include="src\SpyderLeg.cpp" />
+    <ClCompile Include="src\SpyderTale.cpp" />
+    <ClCompile Include="src\Stage.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
+    <ClCompile Include="src\Workspace.cpp" />
+    <ClCompile Include="src\SkyBox.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Animator.h" />
+    <ClInclude Include="src\AR_21.h" />
+    <ClInclude Include="src\AssaltRifle.h" />
+    <ClInclude Include="src\AudioSource.hpp" />
+    <ClInclude Include="src\BodyPart.h" />
+    <ClInclude Include="src\Building.h" />
+    <ClInclude Include="src\ColliderCube.h" />
+    <ClInclude Include="src\Component.hpp" />
+    <ClInclude Include="src\ComponentSystem.hpp" />
+    <ClInclude Include="src\Cross.h" />
+    <ClInclude Include="src\CubicSpline.hpp" />
+    <ClInclude Include="src\Debug.h" />
+    <ClInclude Include="src\Enemy.h" />
+    <ClInclude Include="src\EquationsSolver.hpp" />
+    <ClInclude Include="src\Floor.h" />
+    <ClInclude Include="src\FPS.h" />
+    <ClInclude Include="src\FrontLegAnimator.h" />
+    <ClInclude Include="src\Game.hpp" />
+    <ClInclude Include="src\GameData.h" />
+    <ClInclude Include="src\GameObject.hpp" />
+    <ClInclude Include="src\GaussElimination.hpp" />
+    <ClInclude Include="src\ICharacter.h" />
+    <ClInclude Include="src\ICollider.h" />
+    <ClInclude Include="src\IWeapon.h" />
+    <ClInclude Include="src\LegAnimator.h" />
+    <ClInclude Include="src\Lerp.h" />
+    <ClInclude Include="src\LUdecomposition.hpp" />
+    <ClInclude Include="src\Material.h" />
+    <ClInclude Include="src\MiddleLegAnimator.h" />
+    <ClInclude Include="src\Object.hpp" />
+    <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\PlayerArm.h" />
+    <ClInclude Include="src\PlayerHead.h" />
+    <ClInclude Include="src\PlayerLeg.h" />
+    <ClInclude Include="src\PlayerLegAnimator.h" />
+    <ClInclude Include="src\PlayerWaist.h" />
+    <ClInclude Include="src\SkyBox.h" />
+    <ClInclude Include="src\Spyder.h" />
+    <ClInclude Include="src\Camera.h" />
+    <ClInclude Include="src\SpyderHead.h" />
+    <ClInclude Include="src\SpyderLeg.h" />
+    <ClInclude Include="src\SpyderTale.h" />
+    <ClInclude Include="src\Stage.h" />
+    <ClInclude Include="src\TestObject.h" />
+    <ClInclude Include="src\Texture.h" />
+    <ClInclude Include="src\Transform.hpp" />
+    <ClInclude Include="src\Vector3D.h" />
+    <ClInclude Include="src\Workspace.h" />
+    <ClInclude Include="src\HindLegAnimator.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets" Condition="Exists('packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets')" />
+    <Import Project="packages\nupengl.core.0.1.0.1\build\native\nupengl.core.targets" Condition="Exists('packages\nupengl.core.0.1.0.1\build\native\nupengl.core.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets'))" />
+    <Error Condition="!Exists('packages\nupengl.core.0.1.0.1\build\native\nupengl.core.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\nupengl.core.0.1.0.1\build\native\nupengl.core.targets'))" />
+  </Target>
+</Project>
