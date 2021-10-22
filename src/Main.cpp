@@ -297,6 +297,7 @@ void mySetMenu()
 	glutAddMenuEntry("GameEnd", 3);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
+
 int main(int argc, char** argv)
 {
 	// gultƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»

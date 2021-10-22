@@ -24,6 +24,7 @@ void Building::Draw()
 		parentTransform = parent->GetComponent<Transform>();
 
 	texture->SetTexture();
+	material->EnableMaterial(AMBIENT | DIFFUSE);
 	glPushMatrix();
 	{
 		Position3D<float> position;

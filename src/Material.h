@@ -5,10 +5,10 @@
 
 typedef enum MATERIALOPTION {
 	AMBIENT = 1,
-	DIFFUSE = 2,
-	SPECULAR = 4,
-	EMISSION = 8,
-	SHININESS = 16
+	DIFFUSE = 1 << 1,
+	SPECULAR = 1 << 2,
+	EMISSION = 1 << 3,
+	SHININESS = 1 << 4
 };
 
 class Material : public Component {
