@@ -1,2 +1,3 @@
-# EarthDefenseForce_OpenGL
-OpenGLで地球防衛軍っぽいゲームを作る
+# walk around city
+「コンピュータグラフィックス」の課題で作成した街を歩くアニメーション
+
