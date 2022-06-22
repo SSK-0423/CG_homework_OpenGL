@@ -5,7 +5,6 @@
 
 #define PI 3.141592
 
-
 Player::Player(bool b)
 {
 	transform = nullptr;
